@@ -1,4 +1,4 @@
-package com.trend.ai.activitiy;
+package com.trend.ai.view.ui.actitivy;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +10,10 @@ import android.widget.Toast;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 import com.trend.ai.R;
+import com.trend.ai.view.ui.fragment.CalendarFragment;
+import com.trend.ai.view.ui.fragment.HomeFragment;
+import com.trend.ai.view.ui.fragment.ProfileFragment;
+import com.trend.ai.view.ui.fragment.SettingsFragment;
 
 public class MenuActivity extends FragmentActivity implements View.OnClickListener{
 

@@ -1,4 +1,4 @@
-package com.trend.ai.activitiy;
+package com.trend.ai.view.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

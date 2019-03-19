@@ -1,4 +1,4 @@
-package com.trend.ai.activitiy;
+package com.trend.ai.view.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import com.special.ResideMenu.ResideMenu;
 import com.trend.ai.R;
+import com.trend.ai.view.ui.actitivy.MenuActivity;
 
 /**
  * User: special
