@@ -8,7 +8,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.trend.ai"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -24,6 +24,7 @@ android {
     lintOptions {
         disable 'RestrictedApi'
     }
+
     dataBinding {
         enabled = true
     }
@@ -68,7 +69,7 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$archVersion"
     implementation "android.arch.persistence.room:runtime:$archVersion"
     implementation "android.arch.lifecycle:runtime:$archVersion"
-//    implementation "android.arch.persistence.room:rxjava2:$archVersion"
+    implementation "android.arch.persistence.room:rxjava2:$archVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$archVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$archVersion"
 
@@ -79,9 +80,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
-//    implementation("com.github.ihsanbal:LoggingInterceptor:$interceptorVersion") {
-//        exclude group: 'org.json', module: 'json'
-//    }
+
+
 
     //Rx
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
@@ -94,6 +94,12 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
     annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
 
-    implementation "org.jetbrains.anko:anko:$anko"
-    implementation "com.jakewharton.timber:timber:$timber"
+//    debugImplementation "com.android.support.test.espresso.idling:idling-concurrent:$espressoVersion"
+//    debugImplementation("com.jakewharton.espresso:okhttp3-idling-resource:1.0.0") {
+//        exclude module: 'support-annotations'
+//    }
+
+    implementation("com.github.ihsanbal:LoggingInterceptor:$interceptorVersion") {
+        exclude group: 'org.json', module: 'json'
+    }
 }
