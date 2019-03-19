@@ -23,7 +23,7 @@ public interface Api {
     Observable<Articles> topHeadlines(@Query("sources") String sources);
 
 
-    @POST("auth/login")
+    @POST("api/auth/login")
     Observable<RestData<User>> login(@Body LoginReq loginReq);
 
 }

@@ -49,7 +49,7 @@ public class NetworkModule {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("")
+                .baseUrl("http://myelcom.elcom.com.vn:8000/")
                 .client(client)
                 .build();
     }

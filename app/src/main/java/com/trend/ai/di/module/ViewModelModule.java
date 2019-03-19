@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProvider;
 
 import com.trend.ai.core.ViewModelFactory;
 import com.trend.ai.di.ViewModelKey;
+import com.trend.ai.view.ui.actitivy.login.LoginViewModel;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
@@ -18,10 +19,10 @@ import dagger.multibindings.IntoMap;
 @Module
 public abstract class ViewModelModule {
 //
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(MainViewModel.class)
-//    abstract ViewModel bindsMainViewModel(MainViewModel mainViewModel);
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel.class)
+    abstract ViewModel bindsMainViewModel(LoginViewModel loginViewModel);
 //
 //    @Binds
 //    @IntoMap

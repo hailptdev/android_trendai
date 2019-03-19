@@ -3,6 +3,7 @@ package com.trend.ai.di;
 
 
 import com.trend.ai.MainActivity;
+import com.trend.ai.view.ui.actitivy.login.LoginActivity;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -19,7 +20,7 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector
     abstract MainActivity bindMainActivity();
 
-//    @ContributesAndroidInjector
-//    abstract DetailActivity bindDetailActivity();
+    @ContributesAndroidInjector
+    abstract LoginActivity bindLoginActivity();
 
 }
