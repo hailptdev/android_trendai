@@ -1,6 +1,7 @@
 package com.trend.ai;
 
 
+import com.trend.ai.di.DaggerAppComponent;
 import dagger.android.AndroidInjector;
 import dagger.android.support.DaggerApplication;
 

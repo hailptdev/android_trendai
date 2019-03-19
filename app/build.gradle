@@ -79,9 +79,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
-    implementation("com.github.ihsanbal:LoggingInterceptor:$interceptorVersion") {
-        exclude group: 'org.json', module: 'json'
-    }
+//    implementation("com.github.ihsanbal:LoggingInterceptor:$interceptorVersion") {
+//        exclude group: 'org.json', module: 'json'
+//    }
 
     //Rx
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"

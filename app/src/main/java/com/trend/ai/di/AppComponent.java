@@ -1,10 +1,11 @@
 package com.trend.ai.di;
 
-import com.example.arc.AApp;
-import com.example.arc.di.module.AppModule;
+
 
 import javax.inject.Singleton;
 
+import com.trend.ai.AApp;
+import com.trend.ai.di.module.AppModule;
 import dagger.Component;
 import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;

@@ -1,9 +1,6 @@
 package com.trend.ai.di.module;
 
-import com.example.arc.BuildConfig;
-import com.example.arc.model.api.Api;
-import com.ihsanbal.logging.Level;
-import com.ihsanbal.logging.LoggingInterceptor;
+
 
 import javax.inject.Singleton;
 
@@ -23,41 +20,41 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
 
-    @Provides
-    @Singleton
-    LoggingInterceptor provideInterceptor() {
-        return new LoggingInterceptor.Builder()
-                .loggable(BuildConfig.DEBUG)
-                .setLevel(Level.BASIC)
-                .log(Platform.INFO)
-                .request("Request")
-                .response("Response")
-                .addQueryParam("apiKey", BuildConfig.API_KEY)
-                .build();
-    }
-
-    @Provides
-    @Singleton
-    OkHttpClient provideOkHttp(LoggingInterceptor interceptor) {
-        return new OkHttpClient.Builder()
-                .addNetworkInterceptor(interceptor)
-                .build();
-    }
-
-    @Provides
-    @Singleton
-    Retrofit provideRetrofit(OkHttpClient client) {
-        return new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("")
-                .client(client)
-                .build();
-    }
-
-    @Provides
-    @Singleton
-    Api provideApi(Retrofit retrofit) {
-        return retrofit.create(Api.class);
-    }
+//    @Provides
+//    @Singleton
+//    LoggingInterceptor provideInterceptor() {
+//        return new LoggingInterceptor.Builder()
+//                .loggable(BuildConfig.DEBUG)
+//                .setLevel(Level.BASIC)
+//                .log(Platform.INFO)
+//                .request("Request")
+//                .response("Response")
+//                .addQueryParam("apiKey", BuildConfig.API_KEY)
+//                .build();
+//    }
+//
+//    @Provides
+//    @Singleton
+//    OkHttpClient provideOkHttp(LoggingInterceptor interceptor) {
+//        return new OkHttpClient.Builder()
+//                .addNetworkInterceptor(interceptor)
+//                .build();
+//    }
+//
+//    @Provides
+//    @Singleton
+//    Retrofit provideRetrofit(OkHttpClient client) {
+//        return new Retrofit.Builder()
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                .baseUrl("")
+//                .client(client)
+//                .build();
+//    }
+//
+//    @Provides
+//    @Singleton
+//    Api provideApi(Retrofit retrofit) {
+//        return retrofit.create(Api.class);
+//    }
 }

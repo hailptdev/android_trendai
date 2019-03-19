@@ -1,8 +1,8 @@
 package com.trend.ai.model.api;
 
-import com.example.arc.model.data.Articles;
-import com.example.arc.model.data.Sources;
 
+import com.trend.ai.model.data.Articles;
+import com.trend.ai.model.data.Sources;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

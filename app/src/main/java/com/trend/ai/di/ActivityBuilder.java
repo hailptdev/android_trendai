@@ -1,9 +1,8 @@
 package com.trend.ai.di;
 
-import com.example.arc.view.ui.DetailActivity;
-import com.example.arc.view.ui.MainActivity;
-import com.example.arc.view.ui.SourcesActivity;
 
+
+import com.trend.ai.MainActivity;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -14,13 +13,13 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 abstract class ActivityBuilder {
 
-    @ContributesAndroidInjector
-    abstract SourcesActivity bindSourceActivity();
+//    @ContributesAndroidInjector
+//    abstract SourcesActivity bindSourceActivity();
 
     @ContributesAndroidInjector
     abstract MainActivity bindMainActivity();
 
-    @ContributesAndroidInjector
-    abstract DetailActivity bindDetailActivity();
+//    @ContributesAndroidInjector
+//    abstract DetailActivity bindDetailActivity();
 
 }
