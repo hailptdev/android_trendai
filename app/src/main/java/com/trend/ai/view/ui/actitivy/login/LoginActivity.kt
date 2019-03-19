@@ -1,10 +1,8 @@
 package com.trend.ai.view.ui.actitivy.login
 
 import android.arch.lifecycle.Observer
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import com.trend.ai.R
 import com.trend.ai.core.base.BaseActivity
 import com.trend.ai.databinding.ActivityLoginBinding
@@ -31,9 +29,11 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     }
 
     private fun init(viewModel: LoginViewModel) {
-//        viewModel.loginResult.observe(this, { data -> })
         viewModel.loginResult.observe(this, Observer {
-            Log.e("Ahihi","OKIeeeee")
+
+            if (it!!.status_code == 200 ){
+                Log.e("Ahihi","OKIeeeee" +it.data.name)
+            }
         })
 
         val loginReq = LoginReq()

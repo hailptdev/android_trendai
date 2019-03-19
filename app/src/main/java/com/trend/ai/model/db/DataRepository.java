@@ -9,14 +9,10 @@ import javax.inject.Inject;
 
 import com.trend.ai.core.AppSchedulerProvider;
 import com.trend.ai.core.BaseViewModel;
-import com.trend.ai.core.base.ArticleUtils;
 import com.trend.ai.model.api.Api;
 import com.trend.ai.model.data.Article;
 import com.trend.ai.model.data.Source;
-import com.trend.ai.model.data.Sources;
-import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 
 /**
  * @author ihsan on 12/28/17.

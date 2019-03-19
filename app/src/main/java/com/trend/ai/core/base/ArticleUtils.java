@@ -1,14 +1,5 @@
 package com.trend.ai.core.base;
 
-import android.text.TextUtils;
-
-
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 /**
  * @author ihsan on 2/28/18.
  */
