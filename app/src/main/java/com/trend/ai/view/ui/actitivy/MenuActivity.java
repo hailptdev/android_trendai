@@ -51,7 +51,7 @@ public class MenuActivity extends FragmentActivity implements View.OnClickListen
         resideMenu.setScaleValue(0.6f);
 
         // create menu items;
-        itemHome     = new ResideMenuItem(this, R.drawable.icon_home,     "Home");
+        itemHome     = new ResideMenuItem(this, R.drawable.icon_home,     "Trending Topic/Hashtags");
         itemHome1    = new ResideMenuItem(this, R.drawable.icon_home,     "Home1");
         itemHome2     = new ResideMenuItem(this, R.drawable.icon_home,     "Home2");
         itemProfile  = new ResideMenuItem(this, R.drawable.icon_profile,  "Profile");
