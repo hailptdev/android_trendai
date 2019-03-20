@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 import com.trend.ai.R;
+import com.trend.ai.view.ui.actitivy.login.LoginActivity;
 import com.trend.ai.view.ui.fragment.CalendarFragment;
 import com.trend.ai.view.ui.fragment.HomeFragment;
 import com.trend.ai.view.ui.fragment.ProfileFragment;
@@ -108,7 +109,7 @@ public class MenuActivity extends FragmentActivity implements View.OnClickListen
         }  else if (view == itemHome1){
             changeFragment(new HomeFragment());
         } else if (view == itemHome2){
-            changeFragment(new HomeFragment());
+            LoginActivity.Companion.startActivity(this,view);
         }
 
         resideMenu.closeMenu();
@@ -139,4 +140,6 @@ public class MenuActivity extends FragmentActivity implements View.OnClickListen
     public ResideMenu getResideMenu(){
         return resideMenu;
     }
+
+
 }

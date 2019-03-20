@@ -1,8 +1,11 @@
 package com.trend.ai.view.ui.actitivy.login
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.trend.ai.R
 import com.trend.ai.core.base.BaseActivity
 import com.trend.ai.databinding.ActivityLoginBinding
@@ -33,6 +36,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
             if (it!!.status_code == 200 ){
                 Log.e("Ahihi","OKIeeeee" +it.data.name)
+
             }
         })
 
@@ -40,5 +44,24 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         loginReq.email = "thunh@elcom.com.vn"
         loginReq.password = "12345678"
         viewModel.setLoginParam(loginReq)
+    }
+
+    companion object {
+        const val intent_login = "login"
+        const val intent_avatar = "avatar_url"
+        const val intent_requestCode = 1000
+
+        fun startActivity(activity: Activity, view: View) {
+            val intent = Intent(activity, LoginActivity::class.java)
+//            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+//                activity, view,
+//                ViewCompat.getTransitionName(view)!!
+//            )
+//            intent.putExtra(intent_login, githubUser.login)
+//            intent.putExtra(intent_avatar, githubUser.avatar_url)
+//            activity.startActivityForResult(intent, 1000, options.toBundle())
+            activity.startActivity(intent)
+        }
+
     }
 }
