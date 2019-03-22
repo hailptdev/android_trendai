@@ -7,4 +7,11 @@
 
     <string name="CONSUMER_KEY">pYpazXkV7b5jZ9wqEdiHxWq9n</string>
     <string name="CONSUMER_SECRET">vNCr3oZ2numzzp7wRp3qe7VzoUmRI0YsuMPWz4MEQMrIjgmYLn</string>
+    <string name="title_activity_menu_normal">MenuNormalActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 </resources>

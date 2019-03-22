@@ -1,6 +1,7 @@
 package com.trend.ai.model.api;
 
 
+import com.google.gson.JsonElement;
 import com.trend.ai.model.api.request.LoginReq;
 import com.trend.ai.model.api.response.User;
 import com.trend.ai.model.data.Articles;
@@ -21,6 +22,9 @@ public interface Api {
 
     @GET("top-headlines")
     Observable<Articles> topHeadlines(@Query("sources") String sources);
+
+    @GET("trends/place.json")
+    Observable<JsonElement> getTrends(@Query("id") String id);
 
 
     @POST("api/auth/login")

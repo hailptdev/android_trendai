@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.trend.ai.R
 import com.trend.ai.core.base.BaseFragment
 import com.trend.ai.model.api.request.LoginReq
+import kotlinx.android.synthetic.main.fragment_main.*
 
 
 /**
@@ -47,6 +48,10 @@ class MainFragment : BaseFragment<MainViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    public fun searchWithText(content:String){
+        tvContent.text = content
     }
 
 

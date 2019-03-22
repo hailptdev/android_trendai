@@ -54,6 +54,13 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         viewModel.setLoginParam(loginReq)
 
 
+        viewModel.trendsResult.observe(this, Observer {
+
+        })
+
+        viewModel.setTrendsParam("1")
+
+
         loginButton.callback = object : Callback<TwitterSession>() {
             override fun success(result: Result<TwitterSession>) {
                 requestEmailAddress(applicationContext, result.data)
