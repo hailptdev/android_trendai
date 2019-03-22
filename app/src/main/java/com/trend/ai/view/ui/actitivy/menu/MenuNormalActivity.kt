@@ -1,32 +1,31 @@
 package com.trend.ai.view.ui.actitivy.menu
 
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.MenuItem
 import com.mancj.materialsearchbar.MaterialSearchBar
 import com.trend.ai.R
+import com.trend.ai.delegate.SearchDelegate
+import com.trend.ai.model.data.Product
+import com.trend.ai.view.adapter.TrendSuggestionsAdapter
 import com.trend.ai.view.ui.fragment.ProfileFragment
 import com.trend.ai.view.ui.fragment.main.MainFragment
 import kotlinx.android.synthetic.main.activity_menu_normal.*
 import kotlinx.android.synthetic.main.app_bar_menu_normal.*
 import java.util.ArrayList
 
-class MenuNormalActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, MaterialSearchBar.OnSearchActionListener, SearchDelegate  {
+class MenuNormalActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, MaterialSearchBar.OnSearchActionListener,
+    SearchDelegate {
 
 
 
@@ -63,6 +62,9 @@ class MenuNormalActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         nav_view.setNavigationItemSelectedListener(this)
 //        nav_view_right.setNavigationItemSelectedListener(this)
         searchBar.setOnSearchActionListener(this)
+        searchBar.setSearchIcon(R.drawable.ic_search)
+        searchBar.setMenuIcon(R.drawable.ic_setting)
+        searchBar.setArrowIcon(R.drawable.ic_left_menu)
         supportActionBar!!.hide();
 
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

@@ -23,7 +23,7 @@
         <!-- </activity> -->
         <!--<activity android:name=".view.ui.actitivy.menu.MenuNormalActivity">-->
         <!--</activity>-->
-        <activity android:name=".view.ui.actitivy.menu.MenuNormalActivity"  android:theme="@style/AppTheme">
+        <activity android:name=".view.ui.actitivy.login.LoginActivity"  android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

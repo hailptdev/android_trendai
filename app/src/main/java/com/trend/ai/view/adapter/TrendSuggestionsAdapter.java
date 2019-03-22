@@ -1,4 +1,4 @@
-package com.trend.ai.view.ui.actitivy.menu;
+package com.trend.ai.view.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,16 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
 import com.trend.ai.R;
+import com.trend.ai.model.data.Product;
+import com.trend.ai.delegate.SearchDelegate;
 
 import java.util.ArrayList;
 
 
 public class TrendSuggestionsAdapter extends SuggestionsAdapter<Product, TrendSuggestionsAdapter.SuggestionHolder> {
 
-    SearchDelegate searchDelegate;
-    public void setSearchDelegate( SearchDelegate searchDelegate){
-        this.searchDelegate = searchDelegate;
-    }
+    public SearchDelegate searchDelegate;
     public TrendSuggestionsAdapter(LayoutInflater inflater) {
         super(inflater);
     }

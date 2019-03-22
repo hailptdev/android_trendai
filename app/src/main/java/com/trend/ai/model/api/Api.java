@@ -27,7 +27,7 @@ public interface Api {
     Observable<JsonElement> getTrends(@Query("id") String id);
 
 
-    @POST("api/auth/login")
+    @POST("auth/login")
     Observable<RestData<User>> login(@Body LoginReq loginReq);
 
 }

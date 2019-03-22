@@ -1,4 +1,4 @@
-package com.trend.ai.view.ui.actitivy.menu
+package com.trend.ai.model.data
 
 /**
  * Created by mancj on 27.01.17.

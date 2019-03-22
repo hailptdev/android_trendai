@@ -495,6 +495,7 @@ public class MaterialSearchBar extends RelativeLayout implements View.OnClickLis
     }
 
     private void animateSuggestions(int from, int to) {
+        //hailpt - RecyclerView
         suggestionsVisible = to > 0;
         final RelativeLayout last = findViewById(R.id.last);
         final ViewGroup.LayoutParams lp = last.getLayoutParams();

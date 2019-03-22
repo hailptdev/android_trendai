@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".view.ui.fragment.main.MainFragment">
+<RelativeLayout
+        android:background="#000000"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.ui.fragment.main.MainFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+            android:textColor="#ffffff"
             android:id="@+id/tvContent"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"

@@ -21,7 +21,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 @Module
 public class NetworkModule {
-
+    public String BASE_URL = "http://myelcom.elcom.com.vn:8000/api/";
+    public String BASE_URL2 = "https://api.twitter.com/1.1/";
     @Provides
     @Singleton
     LoggingInterceptor provideInterceptor() {
@@ -31,7 +32,7 @@ public class NetworkModule {
                 .log(Platform.INFO)
                 .request("Request")
                 .response("Response")
-                .addQueryParam("apiKey", "")
+//                .addQueryParam("apiKey", "")
                 .build();
     }
 
@@ -49,7 +50,7 @@ public class NetworkModule {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("https://api.twitter.com/1.1/")
+                .baseUrl(BASE_URL2)
                 .client(client)
                 .build();
     }

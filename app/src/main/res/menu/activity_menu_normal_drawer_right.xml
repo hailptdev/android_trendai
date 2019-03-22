@@ -6,7 +6,7 @@
     <group android:checkableBehavior="single">
         <item
                 android:id="@+id/go_premium"
-                android:icon="@drawable/ic_menu_camera"
+                android:icon="@null"
                 android:title="Import"/>
         <item
                 android:id="@+id/add_delete"
