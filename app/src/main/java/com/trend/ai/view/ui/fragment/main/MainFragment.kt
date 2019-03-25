@@ -32,8 +32,8 @@ class MainFragment : BaseFragment<MainViewModel>() {
         })
 
         val loginReq = LoginReq()
-        loginReq.email = "thunh@elcom.com.vn"
-        loginReq.password = "12345678"
+//        loginReq.email = "thunh@elcom.com.vn"
+//        loginReq.password = "12345678"
         viewModel.setLoginParam(loginReq)
 
     }

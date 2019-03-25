@@ -2,6 +2,7 @@ package com.trend.ai.view.ui.fragment.main
 
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
+import com.google.gson.JsonElement
 import com.trend.ai.core.AppSchedulerProvider
 import com.trend.ai.core.BaseViewModel
 import com.trend.ai.model.api.Api
@@ -26,14 +27,14 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
             .observeOn(schedulerProvider.ui())
             .subscribeOn(schedulerProvider.io())
             .map { data -> data }
-            .subscribe(object : Observer<RestData<User>> {
+            .subscribe(object : Observer<RestData<JsonElement>> {
                 override fun onSubscribe(d: Disposable) {
                     disposables.add(d)
                 }
 
-                override fun onNext(sources: RestData<User>) {
+                override fun onNext(sources: RestData<JsonElement>) {
                     Log.e("hailpt", " login2 onNext ")
-                    userMutableLiveData.postValue(sources)
+//                    userMutableLiveData.postValue(sources)
                 }
 
                 override fun onError(e: Throwable) {

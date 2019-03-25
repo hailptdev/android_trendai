@@ -12,6 +12,8 @@ import com.trend.ai.R
 import com.trend.ai.core.base.BaseActivity
 import com.trend.ai.databinding.ActivityLoginBinding
 import com.trend.ai.model.api.request.LoginReq
+import com.trend.ai.util.PreferUtils
+import com.trend.ai.view.ui.actitivy.menu.MenuNormalActivity
 import com.twitter.sdk.android.core.Callback
 import com.twitter.sdk.android.core.Result
 import com.twitter.sdk.android.core.TwitterException
@@ -43,14 +45,14 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         viewModel.loginResult.observe(this, Observer {
 
             if (it!!.status_code == 200 ){
-                Log.e("Ahihi","OKIeeeee" +it.data.name)
+                Log.e("Ahihi","OKIeeeee" +it.data)
 
             }
         })
 
         val loginReq = LoginReq()
-        loginReq.email = "thunh@elcom.com.vn"
-        loginReq.password = "12345678"
+        loginReq.access_token = PreferUtils.getToken(this)
+        loginReq.access_token_secret = PreferUtils.getSecretToken(this)
         viewModel.setLoginParam(loginReq)
 
 
@@ -60,10 +62,12 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
         viewModel.setTrendsParam("1")
 
-
         loginButton.callback = object : Callback<TwitterSession>() {
             override fun success(result: Result<TwitterSession>) {
-                requestEmailAddress(applicationContext, result.data)
+                PreferUtils.setToken(baseContext, result.data.authToken.token)
+                PreferUtils.setSecretToken(baseContext, result.data.authToken.secret)
+                MenuNormalActivity.startActivity(application)
+//                requestEmailAddress(applicationContext, result.data)
             }
 
             override fun failure(exception: TwitterException) {
@@ -75,6 +79,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             }
         }
     }
+
 
     companion object {
         const val intent_login = "login"

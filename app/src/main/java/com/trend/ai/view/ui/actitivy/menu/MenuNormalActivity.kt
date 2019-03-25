@@ -1,6 +1,8 @@
 package com.trend.ai.view.ui.actitivy.menu
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -13,6 +15,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.view.View
 import com.mancj.materialsearchbar.MaterialSearchBar
 import com.trend.ai.R
 import com.trend.ai.delegate.SearchDelegate
@@ -26,11 +29,6 @@ import java.util.ArrayList
 
 class MenuNormalActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, MaterialSearchBar.OnSearchActionListener,
     SearchDelegate {
-
-
-
-
-
 
     private val suggestions = ArrayList<Product>()
     private var customSuggestionsAdapter: TrendSuggestionsAdapter? = null
@@ -65,7 +63,6 @@ class MenuNormalActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         searchBar.setSearchIcon(R.drawable.ic_search)
         searchBar.setMenuIcon(R.drawable.ic_setting)
         searchBar.setArrowIcon(R.drawable.ic_left_menu)
-        supportActionBar!!.hide();
 
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         customSuggestionsAdapter = TrendSuggestionsAdapter(inflater)
@@ -166,8 +163,6 @@ class MenuNormalActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     }
 
     private fun changeFragment(targetFragment: Fragment) {
-
-        val name = ProfileFragment::class.java.name
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.main_fragment, targetFragment, "fragment")
@@ -179,5 +174,13 @@ class MenuNormalActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         Log.d("hailpt", "MenuNormalActivity $content")
         searchBar.disableSearch(true)
         mainFragment.searchWithText(content!!)
+    }
+
+    companion object {
+        fun startActivity(activity: Context) {
+            val intent = Intent(activity, MenuNormalActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            activity.startActivity(intent)
+        }
     }
 }

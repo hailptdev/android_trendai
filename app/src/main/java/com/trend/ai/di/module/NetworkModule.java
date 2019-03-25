@@ -22,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
     public String BASE_URL = "http://myelcom.elcom.com.vn:8000/api/";
-    public String BASE_URL2 = "https://api.twitter.com/1.1/";
+    public String BASE_URL2 = "https://trendai-bb810.appspot.com/v1/";
     @Provides
     @Singleton
     LoggingInterceptor provideInterceptor() {

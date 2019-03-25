@@ -7,10 +7,7 @@ import com.trend.ai.model.api.response.User;
 import com.trend.ai.model.data.Articles;
 import com.trend.ai.model.data.Sources;
 import io.reactivex.Observable;
-import retrofit2.http.Body;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
+import retrofit2.http.*;
 
 /**
  * @author ihsan on 11/29/17.
@@ -28,6 +25,9 @@ public interface Api {
 
 
     @POST("auth/login")
-    Observable<RestData<User>> login(@Body LoginReq loginReq);
+    Observable<RestData<JsonElement>> login(@Body LoginReq loginReq);
+
+//    @POST("auth/login")
+//    Observable<RestData<JsonElement>> sendComment(@Header("Authorization") String s);
 
 }

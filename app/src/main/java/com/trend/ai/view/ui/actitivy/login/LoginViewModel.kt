@@ -15,7 +15,7 @@ constructor(private val repository: LoginRepository) : ViewModel() {
 
     private val loginParam = MutableLiveData<LoginReq>()
     private val trendsParam = MutableLiveData<String>()
-    val loginResult: LiveData<RestData<User>>
+    val loginResult: LiveData<RestData<JsonElement>>
     val trendsResult: LiveData<JsonElement>
 
     init {
