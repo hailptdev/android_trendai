@@ -46,27 +46,26 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
             if (it!!.status_code == 200 ){
                 Log.e("Ahihi","OKIeeeee" +it.data)
-
+                MenuNormalActivity.startActivity(application)
             }
         })
 
-        val loginReq = LoginReq()
-        loginReq.access_token = PreferUtils.getToken(this)
-        loginReq.access_token_secret = PreferUtils.getSecretToken(this)
-        viewModel.setLoginParam(loginReq)
-
-
-        viewModel.trendsResult.observe(this, Observer {
-
-        })
-
-        viewModel.setTrendsParam("1")
+//        viewModel.trendsResult.observe(this, Observer {
+//
+//        })
+//
+//        viewModel.setTrendsParam("1")
 
         loginButton.callback = object : Callback<TwitterSession>() {
             override fun success(result: Result<TwitterSession>) {
                 PreferUtils.setToken(baseContext, result.data.authToken.token)
                 PreferUtils.setSecretToken(baseContext, result.data.authToken.secret)
-                MenuNormalActivity.startActivity(application)
+
+                val loginReq = LoginReq()
+                loginReq.access_token = PreferUtils.getToken(baseContext)
+                loginReq.access_token_secret = PreferUtils.getSecretToken(baseContext)
+                viewModel.setLoginParam(loginReq)
+
 //                requestEmailAddress(applicationContext, result.data)
             }
 
