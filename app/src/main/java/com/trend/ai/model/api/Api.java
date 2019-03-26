@@ -23,9 +23,11 @@ public interface Api {
     @GET("trends/place.json")
     Observable<JsonElement> getTrends(@Query("id") String id);
 
+    @POST("auth/login")
+    Observable<JsonElement> login(@Body LoginReq loginReq);
 
     @POST("auth/login")
-    Observable<RestData<JsonElement>> login(@Body LoginReq loginReq);
+    Observable<RestData<JsonElement>> login2(@Body LoginReq loginReq);
 
 //    @POST("auth/login")
 //    Observable<RestData<JsonElement>> sendComment(@Header("Authorization") String s);

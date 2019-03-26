@@ -98,14 +98,14 @@ public class Article implements Parcelable {
         this.publishedAt = publishedAt;
     }
 
-    @BindingAdapter({"app:glideBinding", "app:placeholder"})
-    public static void bindImage(ImageView imageView, String url, Drawable placeHolder) {
-        Glide.with(imageView)
-                .setDefaultRequestOptions(RequestOptions.placeholderOf(placeHolder))
-                .asBitmap()
-                .load(url)
-                .into(imageView);
-    }
+//    @BindingAdapter({"app:glideBinding", "app:placeholder"})
+//    public static void bindImage(ImageView imageView, String url, Drawable placeHolder) {
+//        Glide.with(imageView)
+//                .setDefaultRequestOptions(RequestOptions.placeholderOf(placeHolder))
+//                .asBitmap()
+//                .load(url)
+//                .into(imageView);
+//    }
 
     @Override
     public int describeContents() {

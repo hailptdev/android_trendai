@@ -20,20 +20,20 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
     BaseViewModel {
 
     private val disposables = CompositeDisposable()
-    private val userMutableLiveData: MutableLiveData<RestData<JsonElement>> = MutableLiveData()
+    private val userMutableLiveData: MutableLiveData<JsonElement> = MutableLiveData()
     private val trendsMutableLiveData: MutableLiveData<JsonElement> = MutableLiveData()
 
-    fun login2(loginReq: LoginReq): MutableLiveData<RestData<JsonElement>> {
+    fun login2(loginReq: LoginReq): MutableLiveData<JsonElement> {
         api.login(loginReq)
             .observeOn(schedulerProvider.ui())
             .subscribeOn(schedulerProvider.io())
             .map { data -> data }
-            .subscribe(object : Observer<RestData<JsonElement>> {
+            .subscribe(object : Observer<JsonElement> {
                 override fun onSubscribe(d: Disposable) {
                     disposables.add(d)
                 }
 
-                override fun onNext(sources: RestData<JsonElement>) {
+                override fun onNext(sources: JsonElement) {
                     Log.e("hailpt", " login2 onNext ")
 //                    userMutableLiveData.postValue(sources)
                 }

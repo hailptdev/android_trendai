@@ -44,10 +44,9 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     private fun init(viewModel: LoginViewModel) {
         viewModel.loginResult.observe(this, Observer {
 
-            if (it!!.status_code == 200 ){
-                Log.e("Ahihi","OKIeeeee" +it.data)
+
                 MenuNormalActivity.startActivity(application)
-            }
+
         })
 
 //        viewModel.trendsResult.observe(this, Observer {
@@ -62,8 +61,11 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 PreferUtils.setSecretToken(baseContext, result.data.authToken.secret)
 
                 val loginReq = LoginReq()
-                loginReq.access_token = PreferUtils.getToken(baseContext)
-                loginReq.access_token_secret = PreferUtils.getSecretToken(baseContext)
+                PreferUtils.setToken(baseContext,"973082059118804992-XxKGUEfuTh0vmBkLwRcwv6ngowU2eDJ")
+                PreferUtils.setSecretToken(baseContext,"OPUpburUWsTpb87VUfrtUmtI9DZNwpA8UnJhSvWMsNwWo")
+
+                loginReq.access_token = PreferUtils.getSecretToken(baseContext)
+                loginReq.access_token_secret = PreferUtils.getToken(baseContext)
                 viewModel.setLoginParam(loginReq)
 
 //                requestEmailAddress(applicationContext, result.data)
@@ -80,24 +82,24 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     }
 
 
-    companion object {
-        const val intent_login = "login"
-        const val intent_avatar = "avatar_url"
-        const val intent_requestCode = 1000
-
-        fun startActivity(activity: Activity, view: View) {
-            val intent = Intent(activity, LoginActivity::class.java)
-//            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-//                activity, view,
-//                ViewCompat.getTransitionName(view)!!
-//            )
-//            intent.putExtra(intent_login, githubUser.login)
-//            intent.putExtra(intent_avatar, githubUser.avatar_url)
-//            activity.startActivityForResult(intent, 1000, options.toBundle())
-            activity.startActivity(intent)
-        }
-
-    }
+//    companion object {
+//        const val intent_login = "login"
+//        const val intent_avatar = "avatar_url"
+//        const val intent_requestCode = 1000
+//
+//        fun startActivity(activity: Activity, view: View) {
+//            val intent = Intent(activity, LoginActivity::class.java)
+////            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+////                activity, view,
+////                ViewCompat.getTransitionName(view)!!
+////            )
+////            intent.putExtra(intent_login, githubUser.login)
+////            intent.putExtra(intent_avatar, githubUser.avatar_url)
+////            activity.startActivityForResult(intent, 1000, options.toBundle())
+//            activity.startActivity(intent)
+//        }
+//
+//    }
 
     private fun requestEmailAddress(context: Context, session: TwitterSession) {
         TwitterAuthClient().requestEmail(session, object : Callback<String>() {

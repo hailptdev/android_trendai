@@ -23,7 +23,7 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
     private val userMutableLiveData: MutableLiveData<RestData<User>> = MutableLiveData()
 
     fun login2(loginReq: LoginReq): MutableLiveData<RestData<User>> {
-        api.login(loginReq)
+        api.login2(loginReq)
             .observeOn(schedulerProvider.ui())
             .subscribeOn(schedulerProvider.io())
             .map { data -> data }
