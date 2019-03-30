@@ -2,8 +2,6 @@ package com.trend.ai.di.module;
 
 
 
-import javax.inject.Singleton;
-
 import com.ihsanbal.logging.Level;
 import com.ihsanbal.logging.LoggingInterceptor;
 import com.trend.ai.BuildConfig;
@@ -15,6 +13,8 @@ import okhttp3.internal.platform.Platform;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import javax.inject.Singleton;
 
 /**
  * @author ihsan on 2/28/18.
@@ -28,10 +28,11 @@ public class NetworkModule {
     LoggingInterceptor provideInterceptor() {
         return new LoggingInterceptor.Builder()
                 .loggable(BuildConfig.DEBUG)
-                .setLevel(Level.BASIC)
+                .setLevel(Level.NONE)
                 .log(Platform.INFO)
                 .request("Request")
                 .response("Response")
+//                .addHeader("Authorization", "Bearer "+ Config.INSTANCE.getTOKEN())
 //                .addQueryParam("apiKey", "")
                 .build();
     }
@@ -40,7 +41,7 @@ public class NetworkModule {
     @Singleton
     OkHttpClient provideOkHttp(LoggingInterceptor interceptor) {
         return new OkHttpClient.Builder()
-                .addNetworkInterceptor(interceptor)
+//                .addNetworkInterceptor(interceptor)
                 .build();
     }
 

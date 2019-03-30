@@ -1,17 +1,15 @@
 package com.trend.ai.view.ui.actitivy.login
 
-import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Toast
 import com.trend.ai.R
 import com.trend.ai.core.base.BaseActivity
 import com.trend.ai.databinding.ActivityLoginBinding
 import com.trend.ai.model.api.request.LoginReq
+import com.trend.ai.util.Config
 import com.trend.ai.util.PreferUtils
 import com.trend.ai.view.ui.actitivy.menu.MenuNormalActivity
 import com.twitter.sdk.android.core.Callback
@@ -43,17 +41,12 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
     private fun init(viewModel: LoginViewModel) {
         viewModel.loginResult.observe(this, Observer {
-
-
+            if (it != null) {
+                Config.TOKEN = it.token.accessToken
+                PreferUtils.setUserToken(baseContext, it.token.accessToken)
                 MenuNormalActivity.startActivity(application)
-
+            }
         })
-
-//        viewModel.trendsResult.observe(this, Observer {
-//
-//        })
-//
-//        viewModel.setTrendsParam("1")
 
         loginButton.callback = object : Callback<TwitterSession>() {
             override fun success(result: Result<TwitterSession>) {
@@ -61,11 +54,9 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 PreferUtils.setSecretToken(baseContext, result.data.authToken.secret)
 
                 val loginReq = LoginReq()
-                PreferUtils.setToken(baseContext,"973082059118804992-XxKGUEfuTh0vmBkLwRcwv6ngowU2eDJ")
-                PreferUtils.setSecretToken(baseContext,"OPUpburUWsTpb87VUfrtUmtI9DZNwpA8UnJhSvWMsNwWo")
-
                 loginReq.access_token = PreferUtils.getSecretToken(baseContext)
                 loginReq.access_token_secret = PreferUtils.getToken(baseContext)
+
                 viewModel.setLoginParam(loginReq)
 
 //                requestEmailAddress(applicationContext, result.data)
@@ -81,25 +72,12 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         }
     }
 
-
-//    companion object {
-//        const val intent_login = "login"
-//        const val intent_avatar = "avatar_url"
-//        const val intent_requestCode = 1000
-//
-//        fun startActivity(activity: Activity, view: View) {
-//            val intent = Intent(activity, LoginActivity::class.java)
-////            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-////                activity, view,
-////                ViewCompat.getTransitionName(view)!!
-////            )
-////            intent.putExtra(intent_login, githubUser.login)
-////            intent.putExtra(intent_avatar, githubUser.avatar_url)
-////            activity.startActivityForResult(intent, 1000, options.toBundle())
-//            activity.startActivity(intent)
-//        }
-//
-//    }
+    companion object {
+        fun startActivity(activity: Context) {
+            val intent = Intent(activity, LoginActivity::class.java)
+            activity.startActivity(intent)
+        }
+    }
 
     private fun requestEmailAddress(context: Context, session: TwitterSession) {
         TwitterAuthClient().requestEmail(session, object : Callback<String>() {

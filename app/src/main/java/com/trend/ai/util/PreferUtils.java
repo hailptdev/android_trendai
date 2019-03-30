@@ -27,6 +27,7 @@ public class PreferUtils {
     private  static final String PRE_OPPONENT_EMAIL = "PRE_OPPONENT_EMAIL";
     private  static final String PREFER_GCM_TOKEN = "gcm_token";
     private  static final String PREFER_SECRET_TOKEN = "gcm_secret_token";
+    private  static final String PREFER_USER_TOKEN = "gcm_user_token";
     private  static final String USER_ID = "user_id";
     private  static final String CHANLLENGE_TIME_TO_INTIVE = "CHANLLENGE_TIME_TO_INTIVE";
     private  static final String KEY_ENCRYPTION = "kenc";
@@ -52,6 +53,17 @@ public class PreferUtils {
     public static String getSecretToken(Context context){
         SharedPreferences preferences = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE);
         return preferences.getString(PREFER_GCM_TOKEN, "");
+    }
+
+    public static void setUserToken(Context context, String token) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE).edit();
+        editor.putString(PREFER_USER_TOKEN, token);
+        editor.commit();
+    }
+
+    public static String getUserToken(Context context){
+        SharedPreferences preferences = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE);
+        return preferences.getString(PREFER_USER_TOKEN, "");
     }
 
 

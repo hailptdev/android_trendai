@@ -1,6 +1,6 @@
 package com.trend.ai.view.ui.actitivy.menu
 
-import android.app.Activity
+import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,29 +8,48 @@ import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.GravityCompat
-import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
-import android.view.View
+import android.widget.Toast
 import com.mancj.materialsearchbar.MaterialSearchBar
 import com.trend.ai.R
+import com.trend.ai.core.base.BaseActivity
+import com.trend.ai.databinding.ActivityMenuNormalBinding
 import com.trend.ai.delegate.SearchDelegate
-import com.trend.ai.model.data.Product
+import com.trend.ai.model.api.response.category.CategoryRes
 import com.trend.ai.view.adapter.TrendSuggestionsAdapter
-import com.trend.ai.view.ui.fragment.ProfileFragment
 import com.trend.ai.view.ui.fragment.main.MainFragment
 import kotlinx.android.synthetic.main.activity_menu_normal.*
 import kotlinx.android.synthetic.main.app_bar_menu_normal.*
-import java.util.ArrayList
+import java.util.*
 
-class MenuNormalActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, MaterialSearchBar.OnSearchActionListener,
+/*
+* 1. Get categories
+* 2. Show
+* */
+
+class MenuNormalActivity : BaseActivity<MenuViewModel,ActivityMenuNormalBinding>(), NavigationView.OnNavigationItemSelectedListener, MaterialSearchBar.OnSearchActionListener,
     SearchDelegate {
+    override fun getViewModel(): Class<MenuViewModel> {
+        return MenuViewModel::class.java
+    }
 
-    private val suggestions = ArrayList<Product>()
+    override fun onCreate(instance: Bundle?, viewModel: MenuViewModel?, binding: ActivityMenuNormalBinding?) {
+
+        if(viewModel != null){
+            init(viewModel)
+        }
+    }
+
+    override fun getLayoutResId(): Int {
+        return R.layout.activity_menu_normal
+    }
+
+    private var suggestions = ArrayList<CategoryRes>()
     private var customSuggestionsAdapter: TrendSuggestionsAdapter? = null
     private var mainFragment = MainFragment()
     private val products = arrayOf(
@@ -53,10 +72,19 @@ class MenuNormalActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         "Albumin Human"
     )
 
+    private fun init(viewModel: MenuViewModel ){
+        viewModel.categories.observe(this,Observer {
+            Log.e("hailpt"," ~~ "+ it!![0].name)
+            Toast.makeText(this, it!![0].name,Toast.LENGTH_LONG).show()
+            this.suggestions = it
+            doSetupView()
+        })
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu_normal)
+        viewModel.setLoginParam(true)
+    }
+
+
+     fun doSetupView() {
         nav_view.setNavigationItemSelectedListener(this)
 //        nav_view_right.setNavigationItemSelectedListener(this)
         searchBar.setOnSearchActionListener(this)
@@ -71,9 +99,6 @@ class MenuNormalActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 //        searchBar.setMaxSuggestionCount(2)
         searchBar.setHint("Find Trends ...")
 
-        for (i in 1..10) {
-            suggestions.add(Product(products[i - 1], i * 10))
-        }
 
         customSuggestionsAdapter!!.suggestions = suggestions
         searchBar.setCustomSuggestionAdapter(customSuggestionsAdapter)

@@ -1,18 +1,32 @@
 package com.trend.ai.model.api.request;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Created by Hailpt on 6/8/2018.
  */
 public class LoginReq {
 
-    @SerializedName("access_token")
-    @Expose
+//    private String email;
+//    private String password;
+//
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
+
+
     private String access_token;
-    @SerializedName("access_token_secret")
-    @Expose
+
     private String access_token_secret;
 
     public String getAccess_token() {

@@ -9,13 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
 import com.trend.ai.R;
-import com.trend.ai.model.data.Product;
 import com.trend.ai.delegate.SearchDelegate;
+import com.trend.ai.model.api.response.category.CategoryRes;
 
 import java.util.ArrayList;
 
 
-public class TrendSuggestionsAdapter extends SuggestionsAdapter<Product, TrendSuggestionsAdapter.SuggestionHolder> {
+public class TrendSuggestionsAdapter extends SuggestionsAdapter<CategoryRes, TrendSuggestionsAdapter.SuggestionHolder> {
 
     public SearchDelegate searchDelegate;
     public TrendSuggestionsAdapter(LayoutInflater inflater) {
@@ -35,9 +35,9 @@ public class TrendSuggestionsAdapter extends SuggestionsAdapter<Product, TrendSu
     }
 
     @Override
-    public void onBindSuggestionHolder(Product suggestion, SuggestionHolder holder, int position) {
-        holder.title.setText(suggestion.getTitle());
-        holder.subtitle.setText("The price is " + suggestion.getPrice() + "$");
+    public void onBindSuggestionHolder(CategoryRes suggestion, SuggestionHolder holder, int position) {
+        holder.title.setText(suggestion.getName());
+        holder.subtitle.setText("The price is " + suggestion.getSlug() + "$");
     }
 
     @Override
@@ -51,8 +51,8 @@ public class TrendSuggestionsAdapter extends SuggestionsAdapter<Product, TrendSu
                     suggestions = suggestions_clone;
                 else {
                     suggestions = new ArrayList<>();
-                    for (Product item: suggestions_clone)
-                        if(item.getTitle().toLowerCase().contains(term.toLowerCase()))
+                    for (CategoryRes item: suggestions_clone)
+                        if(item.getName().toLowerCase().contains(term.toLowerCase()))
                             suggestions.add(item);
                 }
                 results.values = suggestions;
@@ -61,7 +61,7 @@ public class TrendSuggestionsAdapter extends SuggestionsAdapter<Product, TrendSu
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                suggestions = (ArrayList<Product>) results.values;
+                suggestions = (ArrayList<CategoryRes>) results.values;
                 notifyDataSetChanged();
             }
         };

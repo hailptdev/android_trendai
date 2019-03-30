@@ -6,9 +6,8 @@ import com.google.gson.JsonElement
 import com.trend.ai.core.AppSchedulerProvider
 import com.trend.ai.core.BaseViewModel
 import com.trend.ai.model.api.Api
-import com.trend.ai.model.api.RestData
 import com.trend.ai.model.api.request.LoginReq
-import com.trend.ai.model.api.response.User
+import com.trend.ai.model.api.response.login.Login
 import com.trend.ai.model.db.AppDatabase
 import io.reactivex.Observer
 import io.reactivex.disposables.CompositeDisposable
@@ -20,22 +19,22 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
     BaseViewModel {
 
     private val disposables = CompositeDisposable()
-    private val userMutableLiveData: MutableLiveData<JsonElement> = MutableLiveData()
+    private val userMutableLiveData: MutableLiveData<Login> = MutableLiveData()
     private val trendsMutableLiveData: MutableLiveData<JsonElement> = MutableLiveData()
 
-    fun login2(loginReq: LoginReq): MutableLiveData<JsonElement> {
+    fun login2(loginReq: LoginReq): MutableLiveData<Login> {
         api.login(loginReq)
             .observeOn(schedulerProvider.ui())
             .subscribeOn(schedulerProvider.io())
             .map { data -> data }
-            .subscribe(object : Observer<JsonElement> {
+            .subscribe(object : Observer<Login> {
                 override fun onSubscribe(d: Disposable) {
                     disposables.add(d)
                 }
 
-                override fun onNext(sources: JsonElement) {
+                override fun onNext(sources: Login) {
                     Log.e("hailpt", " login2 onNext ")
-//                    userMutableLiveData.postValue(sources)
+                    userMutableLiveData.postValue(sources)
                 }
 
                 override fun onError(e: Throwable) {
