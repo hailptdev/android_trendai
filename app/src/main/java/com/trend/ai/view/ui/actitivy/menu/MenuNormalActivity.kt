@@ -48,6 +48,7 @@ class MenuNormalActivity : BaseActivity<MenuViewModel, ActivityMenuNormalBinding
         if (viewModel != null) {
             this.viewModel = viewModel
             init(viewModel)
+
         }
     }
 
@@ -58,38 +59,28 @@ class MenuNormalActivity : BaseActivity<MenuViewModel, ActivityMenuNormalBinding
     private var suggestions = ArrayList<CategoryRes>()
     private var customSuggestionsAdapter: TrendSuggestionsAdapter? = null
     private var mainFragment = MainFragment()
-    private val products = arrayOf(
-        "Simvastatin",
-        "Carrot Daucus carota",
-        "Carrot Daucus carota",
-        "Carrot Daucus carota",
-        "Carrot Daucus carota",
-        "Carrot Daucus carota",
-        "Carrot Daucus carota",
-        "Carrot Daucus carota",
-        "Carrot Daucus carota",
-        "Sodium Fluoride",
-        "White Kidney Beans",
-        "Salicylic Acid",
-        "cetirizine hydrochloride",
-        "Mucor racemosus",
-        "Thymol",
-        "TOLNAFTATE",
-        "Albumin Human"
-    )
 
     private fun init(viewModel: MenuViewModel) {
         viewModel.categories.observe(this, Observer {
-            Log.e("hailpt", " ~~ " + it!![0].name)
             Toast.makeText(this, it!![0].name, Toast.LENGTH_LONG).show()
             this.suggestions = it
             doSetupView()
             dismisProgressDialog()
         })
-
-
         showProgessDialog()
         viewModel.setLoginParam(true)
+
+
+
+    }
+
+    private fun getContent() {
+        viewModel!!.setContentParam("5c9b2f31ceddb700010694e1")
+        viewModel!!.contents.observe(this, Observer {
+            if (it != null) {
+                Log.e("hailpt", " ~~~ getContent " + it[0].contentScore)
+            }
+        })
     }
 
 
@@ -145,7 +136,7 @@ class MenuNormalActivity : BaseActivity<MenuViewModel, ActivityMenuNormalBinding
             R.id.nav_camera -> {
                 changeFragment(mainFragment)
                 drawer_layout.closeDrawer(GravityCompat.START)
-                viewModel!!.setLoginParam(true)
+                getContent()
             }
             R.id.nav_gallery -> {
                 changeFragment(mainFragment)
@@ -172,7 +163,7 @@ class MenuNormalActivity : BaseActivity<MenuViewModel, ActivityMenuNormalBinding
 
 
 
-        return true
+        return false
     }
 
     override fun onButtonClicked(buttonCode: Int) {

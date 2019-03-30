@@ -6,7 +6,7 @@ import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
 import com.trend.ai.model.api.RestData
 import com.trend.ai.model.api.request.LoginReq
-import com.trend.ai.model.api.response.User
+import com.trend.ai.model.api.response.login.User
 import javax.inject.Inject
 
 class MainViewModel @Inject

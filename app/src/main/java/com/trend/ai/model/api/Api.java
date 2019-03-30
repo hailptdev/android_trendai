@@ -3,6 +3,7 @@ package com.trend.ai.model.api;
 
 import com.google.gson.JsonElement;
 import com.trend.ai.model.api.request.LoginReq;
+import com.trend.ai.model.api.response.Content;
 import com.trend.ai.model.api.response.category.CategoryRes;
 import com.trend.ai.model.api.response.login.Login;
 import com.trend.ai.model.data.Articles;
@@ -26,11 +27,13 @@ public interface Api {
     @GET("trends/place.json")
     Observable<JsonElement> getTrends(@Query("id") String id);
 
-    @GET("user/categories")
-    Observable<ArrayList<CategoryRes>> getCategories();
+
 
     @GET("user/categories")
     Observable<ArrayList<CategoryRes>> getCategories2(@Header("Authorization") String s);
+
+    @GET("trends/contents/interest")
+    Observable<ArrayList<Content>> getContent(@Header("Authorization") String s,@Query("category_id") String  category_id);
 
     @Headers({"Accept: application/json"})
     @POST("auth/login")

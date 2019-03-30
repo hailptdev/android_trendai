@@ -1,7 +1,6 @@
 package com.trend.ai.di.module;
 
 
-
 import com.ihsanbal.logging.Level;
 import com.ihsanbal.logging.LoggingInterceptor;
 import com.trend.ai.BuildConfig;
@@ -10,6 +9,7 @@ import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.internal.platform.Platform;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -39,9 +39,21 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    OkHttpClient provideOkHttp(LoggingInterceptor interceptor) {
+    HttpLoggingInterceptor  loggingInterceptor(){
+        HttpLoggingInterceptor interceptor1 = new HttpLoggingInterceptor();
+        interceptor1.setLevel(HttpLoggingInterceptor.Level.BODY);
+        return  interceptor1;
+    }
+
+    @Provides
+    @Singleton
+    OkHttpClient provideOkHttp(HttpLoggingInterceptor interceptor) {
+
+        HttpLoggingInterceptor interceptor1 = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
         return new OkHttpClient.Builder()
-//                .addNetworkInterceptor(interceptor)
+                .addNetworkInterceptor(interceptor)
                 .build();
     }
 

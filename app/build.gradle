@@ -103,5 +103,7 @@ dependencies {
         exclude group: 'org.json', module: 'json'
     }
 
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+
 //    implementation 'com.github.mancj:MaterialSearchBar:0.8.2'
 }

@@ -8,7 +8,7 @@ import com.trend.ai.core.BaseViewModel
 import com.trend.ai.model.api.Api
 import com.trend.ai.model.api.RestData
 import com.trend.ai.model.api.request.LoginReq
-import com.trend.ai.model.api.response.User
+import com.trend.ai.model.api.response.login.User
 import com.trend.ai.model.db.AppDatabase
 import io.reactivex.Observer
 import io.reactivex.disposables.CompositeDisposable

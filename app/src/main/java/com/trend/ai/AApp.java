@@ -1,14 +1,15 @@
 package com.trend.ai;
 
 
-import android.os.StrictMode;
 import android.util.Log;
 import com.trend.ai.di.DaggerAppComponent;
-import com.twitter.sdk.android.core.*;
+import com.trend.ai.util.FontsOverride;
+import com.twitter.sdk.android.core.DefaultLogger;
+import com.twitter.sdk.android.core.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterConfig;
 import dagger.android.AndroidInjector;
 import dagger.android.support.DaggerApplication;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * @author ihsan on 11/29/17.
@@ -24,6 +25,11 @@ public class AApp extends DaggerApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        FontsOverride.setDefaultFont(this, "DEFAULT", "fonts/RobotoLight.ttf");
+        FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/RobotoLight.ttf");
+        FontsOverride.setDefaultFont(this, "SERIF", "fonts/RobotoLight.ttf");
+        FontsOverride.setDefaultFont(this, "SANS_SERIF", "fonts/RobotoLight.ttf");
 
         TwitterConfig config = new TwitterConfig.Builder(this)
                 .logger(new DefaultLogger(Log.DEBUG))//enable logging when app is in debug mode
