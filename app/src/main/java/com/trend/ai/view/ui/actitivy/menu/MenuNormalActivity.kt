@@ -32,15 +32,21 @@ import java.util.*
 * 2. Show
 * */
 
-class MenuNormalActivity : BaseActivity<MenuViewModel,ActivityMenuNormalBinding>(), NavigationView.OnNavigationItemSelectedListener, MaterialSearchBar.OnSearchActionListener,
+class MenuNormalActivity : BaseActivity<MenuViewModel, ActivityMenuNormalBinding>(),
+    NavigationView.OnNavigationItemSelectedListener, MaterialSearchBar.OnSearchActionListener,
+
+
     SearchDelegate {
+    var viewModel: MenuViewModel? = null
+
     override fun getViewModel(): Class<MenuViewModel> {
         return MenuViewModel::class.java
     }
 
     override fun onCreate(instance: Bundle?, viewModel: MenuViewModel?, binding: ActivityMenuNormalBinding?) {
 
-        if(viewModel != null){
+        if (viewModel != null) {
+            this.viewModel = viewModel
             init(viewModel)
         }
     }
@@ -72,19 +78,22 @@ class MenuNormalActivity : BaseActivity<MenuViewModel,ActivityMenuNormalBinding>
         "Albumin Human"
     )
 
-    private fun init(viewModel: MenuViewModel ){
-        viewModel.categories.observe(this,Observer {
-            Log.e("hailpt"," ~~ "+ it!![0].name)
-            Toast.makeText(this, it!![0].name,Toast.LENGTH_LONG).show()
+    private fun init(viewModel: MenuViewModel) {
+        viewModel.categories.observe(this, Observer {
+            Log.e("hailpt", " ~~ " + it!![0].name)
+            Toast.makeText(this, it!![0].name, Toast.LENGTH_LONG).show()
             this.suggestions = it
             doSetupView()
+            dismisProgressDialog()
         })
 
+
+        showProgessDialog()
         viewModel.setLoginParam(true)
     }
 
 
-     fun doSetupView() {
+    fun doSetupView() {
         nav_view.setNavigationItemSelectedListener(this)
 //        nav_view_right.setNavigationItemSelectedListener(this)
         searchBar.setOnSearchActionListener(this)
@@ -136,6 +145,7 @@ class MenuNormalActivity : BaseActivity<MenuViewModel,ActivityMenuNormalBinding>
             R.id.nav_camera -> {
                 changeFragment(mainFragment)
                 drawer_layout.closeDrawer(GravityCompat.START)
+                viewModel!!.setLoginParam(true)
             }
             R.id.nav_gallery -> {
                 changeFragment(mainFragment)
@@ -172,7 +182,7 @@ class MenuNormalActivity : BaseActivity<MenuViewModel,ActivityMenuNormalBinding>
             MaterialSearchBar.BUTTON_SPEECH -> {
             }
             MaterialSearchBar.BUTTON_BACK -> searchBar.disableSearch(true)
-            MaterialSearchBar.BUTTON_SETTING ->  {
+            MaterialSearchBar.BUTTON_SETTING -> {
                 searchBar.disableSearch(false)
                 drawer_layout.openDrawer(Gravity.RIGHT)
             }

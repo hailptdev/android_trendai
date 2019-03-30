@@ -9,10 +9,10 @@ import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import com.trend.ai.util.ProgressDialogUtils;
+import dagger.android.support.DaggerAppCompatActivity;
 
 import javax.inject.Inject;
-
-import dagger.android.support.DaggerAppCompatActivity;
 
 /**
  * @author ihsan on 11/29/17.
@@ -40,5 +40,13 @@ public abstract class BaseActivity<M extends ViewModel, B extends ViewDataBindin
     protected abstract
     @LayoutRes
     int getLayoutResId();
+
+    public void showProgessDialog() {
+        ProgressDialogUtils.showProgressDialog(this, 0, 0);
+    }
+
+    public void dismisProgressDialog() {
+        ProgressDialogUtils.dismissProgressDialog();
+    }
 
 }
