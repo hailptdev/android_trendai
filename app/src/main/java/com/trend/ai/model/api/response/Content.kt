@@ -14,10 +14,10 @@ class Content {
     var id: String? = null
     @SerializedName("twitter_id")
     @Expose
-    var twitterId: Int? = null
+    var twitterId: Double? = null
     @SerializedName("twitter_user_id")
     @Expose
-    var twitterUserId: Int? = null
+    var twitterUserId: Double? = null
     @SerializedName("text")
     @Expose
     var text: String? = null
@@ -58,7 +58,7 @@ class UserMention {
     var indices: List<Int>? = null
     @SerializedName("twitter_id")
     @Expose
-    var twitterId: Int? = null
+    var twitterId: Double? = null
     @SerializedName("name")
     @Expose
     var name: String? = null
@@ -75,7 +75,7 @@ class User {
     var id: String? = null
     @SerializedName("twitter_id")
     @Expose
-    var twitterId: Int? = null
+    var twitterId: Double? = null
     @SerializedName("name")
     @Expose
     var name: String? = null

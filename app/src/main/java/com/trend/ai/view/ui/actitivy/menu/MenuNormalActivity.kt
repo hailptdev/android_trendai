@@ -69,9 +69,6 @@ class MenuNormalActivity : BaseActivity<MenuViewModel, ActivityMenuNormalBinding
         })
         showProgessDialog()
         viewModel.setLoginParam(true)
-
-
-
     }
 
     private fun getContent() {

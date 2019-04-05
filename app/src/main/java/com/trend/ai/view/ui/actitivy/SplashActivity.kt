@@ -21,5 +21,7 @@ class SplashActivity : AppCompatActivity() {
         } else {
             LoginActivity.startActivity(application)
         }
+
+        finish()
     }
 }

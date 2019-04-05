@@ -46,6 +46,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 Config.TOKEN = it.token.accessToken
                 PreferUtils.setUserToken(baseContext, it.token.accessToken)
                 MenuLeftActivity.startActivity(application)
+                finish()
             }
         })
 

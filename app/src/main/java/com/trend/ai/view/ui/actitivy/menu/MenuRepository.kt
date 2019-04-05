@@ -1,6 +1,7 @@
 package com.trend.ai.view.ui.actitivy.menu
 
 import android.arch.lifecycle.MutableLiveData
+import android.util.Log
 import com.trend.ai.core.AppSchedulerProvider
 import com.trend.ai.core.BaseViewModel
 import com.trend.ai.model.api.Api
@@ -68,14 +69,15 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
 
                 override fun onNext(data: ArrayList<Content>) {
                     contentMutableLiveData.postValue(data)
+                    Log.e("hailpt"," getContent onNext ")
                 }
 
                 override fun onError(e: Throwable) {
-
+                    Log.e("hailpt"," getContent onError ")
                 }
 
                 override fun onComplete() {
-
+                    Log.e("hailpt"," getContent onComplete ")
                 }
             })
         return contentMutableLiveData
@@ -85,6 +87,6 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
 
 
     override fun onClear() {
-
+        disposables.clear()
     }
 }

@@ -5,6 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed"
         tools:context=".view.ui.actitivy.menu.MenuLeftActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -13,6 +14,7 @@
             android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
+                app:layout_scrollFlags="scroll|enterAlways"
                 app:theme="@style/ToolbarColoredBackArrow"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
