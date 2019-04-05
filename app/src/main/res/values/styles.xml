@@ -25,7 +25,7 @@
         <item name="android:alertDialogStyle">@style/CustomAlertDialogStyle</item>
         <item name="android:windowBackground">@color/transparent</item>
         <item name="android:colorBackground">@color/transparent</item>
-        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorPrimary">#000000</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textStyle">normal</item>
@@ -43,6 +43,10 @@
         <item name="android:fullDark">@color/transparent</item>
         <item name="android:topBright">@color/transparent</item>
         <item name="android:topDark">@color/transparent</item>
+    </style>
+
+    <style name="ToolbarColoredBackArrow" parent="AppTheme">
+        <item name="android:textColorSecondary">#000000</item>
     </style>
 
 </resources>

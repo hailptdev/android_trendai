@@ -74,6 +74,6 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
     }
 
     override fun onClear() {
-
+        disposables.clear()
     }
 }
