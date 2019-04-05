@@ -9,6 +9,7 @@ import com.trend.ai.di.ViewModelKey;
 import com.trend.ai.view.ui.actitivy.login.LoginViewModel;
 import com.trend.ai.view.ui.actitivy.menu.MenuViewModel;
 import com.trend.ai.view.ui.fragment.main.MainViewModel;
+import com.trend.ai.view.ui.fragment.trend.TrendViewModel;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
@@ -35,6 +36,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MenuViewModel.class)
     abstract ViewModel bindsMenuViewModel(MenuViewModel menuViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TrendViewModel.class)
+    abstract ViewModel bindsTrendViewModel(TrendViewModel trendViewModel);
 //
 //    @Binds
 //    @IntoMap

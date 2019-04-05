@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 import com.trend.ai.R
+import com.trend.ai.model.api.response.Content
 import com.trend.ai.model.api.response.category.CategoryRes
 import com.trend.ai.model.api.response.login.InterestCategory
 
-class AchievementAdapter(private val topicDetails: List<InterestCategory>) : RecyclerView.Adapter<AchievementAdapter.MyViewHolder>() {
-    var onItemClick: ((InterestCategory) -> Unit)? = null
+class ContentAdapter(private val topicDetails: List<Content>) : RecyclerView.Adapter<ContentAdapter.MyViewHolder>() {
+    var onItemClick: ((Content) -> Unit)? = null
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView = view.findViewById(R.id.tvName)
 
@@ -33,7 +34,7 @@ class AchievementAdapter(private val topicDetails: List<InterestCategory>) : Rec
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val topic = topicDetails[position]
-        holder.name.text = topic.name
+        holder.name.text = topic.text
 
 
 

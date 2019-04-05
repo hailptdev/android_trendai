@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -115,8 +116,27 @@ class MenuLeftActivity : BaseActivity<MenuViewModel, ActivityMenuLeftBinding>(),
     }
 
 
-    var mList = ArrayList<CategoryRes>()
     private fun init(viewModel: MenuViewModel) {
+
+        viewModel.userInfomation.observe(this, Observer {
+            mShimmerViewContainer.stopShimmerAnimation()
+            mShimmerViewContainer.visibility = View.GONE
+            val mAdapter = AchievementAdapter(it!!.interestCategories)
+            rcView.layoutManager = LinearLayoutManager(baseContext)
+            rcView.setHasFixedSize(false)
+            rcView.adapter = mAdapter
+            mAdapter.onItemClick = { cate ->
+//                viewModel.setContentParam(cate.id!!)
+
+
+                TrendingActivity.start(this, cate.id)
+
+
+            }
+        })
+        viewModel.setGetInfomationParam(true)
+
+
 
         viewModel.contents.observe(this, Observer {
             Toast.makeText(this, it!![0].text, Toast.LENGTH_LONG).show()
@@ -126,21 +146,7 @@ class MenuLeftActivity : BaseActivity<MenuViewModel, ActivityMenuLeftBinding>(),
         viewModel.categories.observe(this, Observer {
 
 
-            mShimmerViewContainer.stopShimmerAnimation()
-            mShimmerViewContainer.visibility = View.GONE
 
-            mList.addAll(it!!)
-            mList.addAll(it)
-
-            val mAdapter = AchievementAdapter(mList)
-            rcView.layoutManager = LinearLayoutManager(baseContext)
-            rcView.setHasFixedSize(false)
-            rcView.adapter = mAdapter
-
-            mAdapter.onItemClick = { cate ->
-//                TrendingActivity.startActivity(application)
-                viewModel.setContentParam(cate.id!!)
-            }
         })
         viewModel.setLoginParam(true)
 

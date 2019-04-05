@@ -4,8 +4,11 @@ package com.trend.ai.model.api;
 import com.google.gson.JsonElement;
 import com.trend.ai.model.api.request.LoginReq;
 import com.trend.ai.model.api.response.Content;
+import com.trend.ai.model.api.response.Influencer;
+import com.trend.ai.model.api.response.Topic;
 import com.trend.ai.model.api.response.category.CategoryRes;
 import com.trend.ai.model.api.response.login.Login;
+import com.trend.ai.model.api.response.login.User;
 import com.trend.ai.model.data.Articles;
 import com.trend.ai.model.data.Sources;
 import io.reactivex.Observable;
@@ -32,8 +35,7 @@ public interface Api {
     @GET("user/categories")
     Observable<ArrayList<CategoryRes>> getCategories2(@Header("Authorization") String s);
 
-    @GET("trends/contents/interest")
-    Observable<ArrayList<Content>> getContent(@Header("Authorization") String s,@Query("category_id") String  category_id);
+
 
     @Headers({"Accept: application/json"})
     @POST("auth/login")
@@ -44,7 +46,28 @@ public interface Api {
     @POST("auth/login")
     Observable<RestData<JsonElement>> login2(@Body LoginReq loginReq);
 
-//    @POST("auth/login")
-//    Observable<RestData<JsonElement>> sendComment(@Header("Authorization") String s);
+    @GET("user") // Topics
+    Observable<User> getUserInfomation(@Header("Authorization") String s);
+
+
+
+
+    /* TRENDING */
+
+    // From Category
+    @GET("trends/interest") // Topics
+    Observable<ArrayList<Topic>> getTopics(@Header("Authorization") String s, @Query("category_id") String  category_id);
+
+    @GET("trends/influencers/interest") // Topics
+    Observable<ArrayList<Influencer>> getInfluencers(@Header("Authorization") String s, @Query("category_id") String  category_id);
+
+
+    @GET("trends/contents/interest") // Contents
+    Observable<ArrayList<Content>> getContent(@Header("Authorization") String s,@Query("category_id") String  category_id);
+
+    @GET("trends/medias/interest") // Medias
+    Observable<ArrayList<Content>> getMedias(@Header("Authorization") String s,@Query("category_id") String  category_id,@Query("filter") String filter);
+
+    // From Location
 
 }
