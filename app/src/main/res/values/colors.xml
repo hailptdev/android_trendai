@@ -9,5 +9,6 @@
     <color name="trend_nick_name">#0e1316</color>
     <color name="trend_name">#6b7d8b</color>
     <color name="trend_line">#d6dbdf</color>
+    <color name="trend_content">#0e1316</color>
 
 </resources>

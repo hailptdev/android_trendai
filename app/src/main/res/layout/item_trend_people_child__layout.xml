@@ -23,7 +23,7 @@
                 android:id="@+id/tvFriends"
                 android:layout_marginLeft="2dp"
                 android:layout_toRightOf="@+id/imvFriends"
-                android:text="Comment"
+                android:text="2000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"/>
@@ -45,7 +45,7 @@
                   android:id="@+id/tvFollowers"
                   android:layout_marginLeft="2dp"
                   android:layout_toRightOf="@+id/imvFollowers"
-                  android:text="Reload"
+                  android:text="2000"
                   android:textSize="@dimen/trend_like"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                   android:id="@+id/tvHeart"
                   android:layout_marginLeft="2dp"
                   android:layout_toRightOf="@+id/imvHeart"
-                  android:text="Heart"
+                  android:text="2000"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_centerVertical="true"/>
@@ -92,7 +92,7 @@
                   android:id="@+id/tvScore"
                   android:layout_marginLeft="2dp"
                   android:layout_toRightOf="@+id/imvScore"
-                  android:text="Heart"
+                  android:text="2000"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_centerVertical="true"/>

@@ -67,8 +67,8 @@ public interface Api {
     Observable<ArrayList<Content>> getContent(@Header("Authorization") String s,@Query("category_id") String  category_id);
 
     @GET("trends/medias/interest") // Medias
-    Observable<ArrayList<Media>> getMedias(@Header("Authorization") String s, @Query("category_id") String  category_id);
-//    Observable<ArrayList<Media>> getMedias(@Header("Authorization") String s, @Query("category_id") String  category_id, @Query("filter") String filter);
+//    Observable<ArrayList<Media>> getMedias(@Header("Authorization") String s, @Query("category_id") String  category_id);
+    Observable<ArrayList<Media>> getMedias(@Header("Authorization") String s, @Query("category_id") String  category_id, @Query("filter") String filter);
 
     // From Location
 

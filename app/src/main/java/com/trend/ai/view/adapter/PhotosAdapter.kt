@@ -11,13 +11,14 @@ import com.bumptech.glide.Glide
 import com.trend.ai.R
 import com.trend.ai.model.api.response.Media
 
-class MediaAdapter(private val topicDetails: List<Media>, private val context:Context) : RecyclerView.Adapter<MediaAdapter.MyViewHolder>() {
+class PhotosAdapter(private val topicDetails: List<Media>, private val context:Context) : RecyclerView.Adapter<PhotosAdapter.MyViewHolder>() {
     var onItemClick: ((Media) -> Unit)? = null
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView = view.findViewById(R.id.tvName)
         var imvAva: ImageView = view.findViewById(R.id.imvAva)
         var tvNameScreen: TextView = view.findViewById(R.id.tvNameScreen)
-
+        var tvContent: TextView = view.findViewById(R.id.tvContent)
+        var imvPhoto: ImageView = view.findViewById(R.id.imvPhoto)
 
         var tvFriends: TextView = view.findViewById(R.id.tvFriends)
         var tvFollowers: TextView = view.findViewById(R.id.tvFollowers)
@@ -35,7 +36,7 @@ class MediaAdapter(private val topicDetails: List<Media>, private val context:Co
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_video_layout, parent, false)
+            .inflate(R.layout.item_trend_photo_layout, parent, false)
 
         return MyViewHolder(itemView)
     }
@@ -43,8 +44,11 @@ class MediaAdapter(private val topicDetails: List<Media>, private val context:Co
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = topicDetails[position]
         holder.name.text = data.user!!.name
+        holder.tvContent.text = data.text
         holder.tvNameScreen.text = "@"+data.user!!.screenName
+
         Glide.with(context).load(data.user!!.profileImageUrl).into(holder.imvAva)
+        Glide.with(context).load(data.entities!!.media!![0].mediaUrl).into(holder.imvPhoto)
 
 //        holder.tvFriends.text = data.friends_count.toString()
 //        holder.tvFollowers.text = data.followers_count.toString()

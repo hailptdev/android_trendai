@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.trend.ai.R
 import com.trend.ai.core.base.BaseFragment
+import com.trend.ai.model.api.request.MediaReq
 import com.trend.ai.util.Utils
 import com.trend.ai.view.adapter.MediaAdapter
 import kotlinx.android.synthetic.main.fragment_content.*
@@ -24,7 +25,7 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 
-class MediaFragment : BaseFragment<TrendViewModel>() {
+class VideosFragment : BaseFragment<TrendViewModel>() {
     var viewModel: TrendViewModel? = null
 
     override fun getViewModel(): Class<TrendViewModel> {
@@ -49,7 +50,10 @@ class MediaFragment : BaseFragment<TrendViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         swipeContainer.setOnRefreshListener {
-            viewModel!!.setMediaParam("5c9b2f33ceddb700010694f5")
+            val photoReq = MediaReq()
+            photoReq.cateId = "5c9b2f33ceddb700010694f5"
+            photoReq.filter = "videos"
+            viewModel!!.setMediaParam(photoReq)
         }
         Utils.setupColorForF5(swipeContainer)
     }
@@ -69,7 +73,10 @@ class MediaFragment : BaseFragment<TrendViewModel>() {
             swipeContainer.isRefreshing = false
 
         })
-        viewModel!!.setMediaParam("5c9b2f33ceddb700010694f5")
+        val photoReq = MediaReq()
+        photoReq.cateId = "5c9b2f33ceddb700010694f5"
+        photoReq.filter = "videos"
+        viewModel!!.setMediaParam(photoReq)
 
 
     }

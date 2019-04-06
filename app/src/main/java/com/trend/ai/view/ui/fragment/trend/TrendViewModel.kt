@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
+import com.trend.ai.model.api.request.MediaReq
 import com.trend.ai.model.api.response.Content
 import com.trend.ai.model.api.response.Influencer
 import com.trend.ai.model.api.response.Media
@@ -18,8 +19,11 @@ constructor(private val repository: TrendRepository) : ViewModel() {
     private val peopleParam = MutableLiveData<String>()
     val people: LiveData<ArrayList<Influencer>>
 
-    private val mediaParam = MutableLiveData<String>()
+    private val mediaParam = MutableLiveData<MediaReq>()
     val medias: LiveData<ArrayList<Media>>
+
+    private val photoParam = MutableLiveData<MediaReq>()
+    val photos: LiveData<ArrayList<Media>>
 
     init {
         contents = Transformations.switchMap(contentParam) {
@@ -29,7 +33,10 @@ constructor(private val repository: TrendRepository) : ViewModel() {
             repository.getPeople(peopleParam.value!!) }
 
         medias = Transformations.switchMap(mediaParam) {
-            repository.getMedias(mediaParam.value!!) }
+            repository.getMedias(mediaParam.value!!.cateId!!,mediaParam.value!!.filter!!) }
+
+        photos = Transformations.switchMap(photoParam) {
+            repository.getPhotos(photoParam.value!!.cateId!!,photoParam.value!!.filter!!) }
     }
 
     fun setContentParam(contentParam:String) {
@@ -40,8 +47,12 @@ constructor(private val repository: TrendRepository) : ViewModel() {
         this.peopleParam.value = peopleParam
     }
 
-    fun setMediaParam(mediaParam:String) {
+    fun setMediaParam(mediaParam:MediaReq) {
         this.mediaParam.value = mediaParam
+    }
+
+    fun setPhotosParam(photoParam:MediaReq) {
+        this.photoParam.value = photoParam
     }
 
     override fun onCleared() {

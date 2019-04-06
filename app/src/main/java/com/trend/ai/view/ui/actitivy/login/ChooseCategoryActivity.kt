@@ -1,10 +1,10 @@
 package com.trend.ai.view.ui.actitivy.login
 
-import android.app.Activity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.trend.ai.R
 
-class ChooseCategoryActivity : Activity() {
+class ChooseCategoryActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

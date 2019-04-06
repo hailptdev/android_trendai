@@ -1,16 +1,12 @@
 package com.trend.ai.di;
 
 
-
 import com.trend.ai.MainActivity;
 import com.trend.ai.view.ui.actitivy.login.LoginActivity;
 import com.trend.ai.view.ui.actitivy.menu.MenuLeftActivity;
 import com.trend.ai.view.ui.actitivy.menu.MenuNormalActivity;
 import com.trend.ai.view.ui.fragment.main.MainFragment;
-import com.trend.ai.view.ui.fragment.trend.ContentFragment;
-import com.trend.ai.view.ui.fragment.trend.InfluencerFragment;
-import com.trend.ai.view.ui.fragment.trend.MediaFragment;
-import com.trend.ai.view.ui.fragment.trend.TopicFragment;
+import com.trend.ai.view.ui.fragment.trend.*;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -51,6 +47,9 @@ abstract class ActivityBuilder {
     abstract ContentFragment bindContentFragment();
 
     @ContributesAndroidInjector
-    abstract MediaFragment bindMediaFragment();
+    abstract VideosFragment bindMediaFragment();
+
+    @ContributesAndroidInjector
+    abstract PhotosFragment bindPhotosFragment();
 
 }

@@ -38,7 +38,7 @@
         <!-- <activity android:name=".view.ui.actitivy.menu.MenuNormalActivity"> -->
         <!-- </activity> -->
         <activity
-                android:name=".view.ui.actitivy.login.ChooseCategoryActivity"
+                android:name=".view.ui.actitivy.SplashActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

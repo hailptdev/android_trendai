@@ -10,10 +10,7 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.trend.ai.R
-import com.trend.ai.view.ui.fragment.trend.ContentFragment
-import com.trend.ai.view.ui.fragment.trend.InfluencerFragment
-import com.trend.ai.view.ui.fragment.trend.MediaFragment
-import com.trend.ai.view.ui.fragment.trend.TopicFragment
+import com.trend.ai.view.ui.fragment.trend.*
 import kotlinx.android.synthetic.main.activity_trending.*
 
 
@@ -45,13 +42,11 @@ class TrendingActivity : AppCompatActivity() {
 
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(TopicFragment(), "Top")
+        adapter.addFragment(ContentFragment(), "Top")
         adapter.addFragment(TopicFragment(), "Lasted")
         adapter.addFragment(InfluencerFragment(), "Influencers")
-        adapter.addFragment(ContentFragment(), "Content")
-        adapter.addFragment(MediaFragment(), "Media")
-        adapter.addFragment(MediaFragment(), "Media")
-        adapter.addFragment(MediaFragment(), "Media")
+        adapter.addFragment(PhotosFragment(), "Photos")
+        adapter.addFragment(VideosFragment(), "Videos")
         viewPager.adapter = adapter
     }
 

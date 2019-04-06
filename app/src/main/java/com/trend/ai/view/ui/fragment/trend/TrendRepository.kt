@@ -28,6 +28,7 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
     private val contentMutableLiveData: MutableLiveData<ArrayList<Content>> = MutableLiveData()
     private val peopleMutableLiveData: MutableLiveData<ArrayList<Influencer>> = MutableLiveData()
     private val mediaMutableLiveData: MutableLiveData<ArrayList<Media>> = MutableLiveData()
+    private val photosMutableLiveData: MutableLiveData<ArrayList<Media>> = MutableLiveData()
 
 
     fun login2(loginReq: LoginReq): MutableLiveData<RestData<User>> {
@@ -108,8 +109,8 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
         return peopleMutableLiveData
     }
 
-    fun getMedias(categoryId:String): MutableLiveData<ArrayList<Media>> {
-        api.getMedias(Config.TOKEN,categoryId)
+    fun getMedias(categoryId:String, filter:String): MutableLiveData<ArrayList<Media>> {
+        api.getMedias(Config.TOKEN,categoryId,filter)
             .observeOn(schedulerProvider.ui())
             .subscribeOn(schedulerProvider.io())
             .map { data -> data }
@@ -132,6 +133,33 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
                 }
             })
         return mediaMutableLiveData
+    }
+
+
+    fun getPhotos(categoryId:String, filter:String): MutableLiveData<ArrayList<Media>> {
+        api.getMedias(Config.TOKEN,categoryId,filter)
+            .observeOn(schedulerProvider.ui())
+            .subscribeOn(schedulerProvider.io())
+            .map { data -> data }
+            .subscribe(object : Observer<ArrayList<Media>> {
+                override fun onSubscribe(d: Disposable) {
+                    disposables.add(d)
+                }
+
+                override fun onNext(data: ArrayList<Media>) {
+                    photosMutableLiveData.postValue(data)
+                    Log.e("hailpt"," getContent onNext ")
+                }
+
+                override fun onError(e: Throwable) {
+                    Log.e("hailpt"," getContent onError ")
+                }
+
+                override fun onComplete() {
+                    Log.e("hailpt"," getContent onComplete ")
+                }
+            })
+        return photosMutableLiveData
     }
 
     override fun onClear() {
