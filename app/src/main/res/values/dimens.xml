@@ -13,4 +13,9 @@
     <dimen name="placeholder_text_height">8dp</dimen>
     <dimen name="placeholder_image">50dp</dimen>
     <dimen name="activity_padding">16dp</dimen>
+
+
+    <dimen name="trend_like">12dp</dimen>
+
+
 </resources>

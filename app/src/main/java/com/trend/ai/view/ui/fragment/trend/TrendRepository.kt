@@ -9,6 +9,8 @@ import com.trend.ai.model.api.Api
 import com.trend.ai.model.api.RestData
 import com.trend.ai.model.api.request.LoginReq
 import com.trend.ai.model.api.response.Content
+import com.trend.ai.model.api.response.Influencer
+import com.trend.ai.model.api.response.Media
 import com.trend.ai.model.api.response.login.User
 import com.trend.ai.model.db.AppDatabase
 import com.trend.ai.util.Config
@@ -24,6 +26,8 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
     private val disposables = CompositeDisposable()
     private val userMutableLiveData: MutableLiveData<RestData<User>> = MutableLiveData()
     private val contentMutableLiveData: MutableLiveData<ArrayList<Content>> = MutableLiveData()
+    private val peopleMutableLiveData: MutableLiveData<ArrayList<Influencer>> = MutableLiveData()
+    private val mediaMutableLiveData: MutableLiveData<ArrayList<Media>> = MutableLiveData()
 
 
     fun login2(loginReq: LoginReq): MutableLiveData<RestData<User>> {
@@ -76,6 +80,58 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
                 }
             })
         return contentMutableLiveData
+    }
+
+    fun getPeople(categoryId:String): MutableLiveData<ArrayList<Influencer>> {
+        api.getPeople(Config.TOKEN, categoryId)
+            .observeOn(schedulerProvider.ui())
+            .subscribeOn(schedulerProvider.io())
+            .map { data -> data }
+            .subscribe(object : Observer<ArrayList<Influencer>> {
+                override fun onSubscribe(d: Disposable) {
+                    disposables.add(d)
+                }
+
+                override fun onNext(data: ArrayList<Influencer>) {
+                    peopleMutableLiveData.postValue(data)
+                    Log.e("hailpt"," getContent onNext ")
+                }
+
+                override fun onError(e: Throwable) {
+                    Log.e("hailpt"," getContent onError ")
+                }
+
+                override fun onComplete() {
+                    Log.e("hailpt"," getContent onComplete ")
+                }
+            })
+        return peopleMutableLiveData
+    }
+
+    fun getMedias(categoryId:String): MutableLiveData<ArrayList<Media>> {
+        api.getMedias(Config.TOKEN,categoryId)
+            .observeOn(schedulerProvider.ui())
+            .subscribeOn(schedulerProvider.io())
+            .map { data -> data }
+            .subscribe(object : Observer<ArrayList<Media>> {
+                override fun onSubscribe(d: Disposable) {
+                    disposables.add(d)
+                }
+
+                override fun onNext(data: ArrayList<Media>) {
+                    mediaMutableLiveData.postValue(data)
+                    Log.e("hailpt"," getContent onNext ")
+                }
+
+                override fun onError(e: Throwable) {
+                    Log.e("hailpt"," getContent onError ")
+                }
+
+                override fun onComplete() {
+                    Log.e("hailpt"," getContent onComplete ")
+                }
+            })
+        return mediaMutableLiveData
     }
 
     override fun onClear() {

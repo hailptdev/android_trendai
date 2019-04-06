@@ -9,19 +9,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.trend.ai.R
-import com.trend.ai.model.api.response.Content
+import com.trend.ai.model.api.response.Influencer
 
-class ContentAdapter(private val topicDetails: List<Content>, private val context:Context) : RecyclerView.Adapter<ContentAdapter.MyViewHolder>() {
-    var onItemClick: ((Content) -> Unit)? = null
+class PeopleAdapter(private val topicDetails: List<Influencer>, private val context:Context) : RecyclerView.Adapter<PeopleAdapter.MyViewHolder>() {
+    var onItemClick: ((Influencer) -> Unit)? = null
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView = view.findViewById(R.id.tvName)
         var imvAva: ImageView = view.findViewById(R.id.imvAva)
-        var tvTime: TextView = view.findViewById(R.id.tvNameScreen)
-        var tvContent: TextView = view.findViewById(R.id.tvContent)
+        var tvNameScreen: TextView = view.findViewById(R.id.tvNameScreen)
 
-        var tvComment: TextView = view.findViewById(R.id.tvComment)
-        var tvReload: TextView = view.findViewById(R.id.tvReload)
+
+        var tvFriends: TextView = view.findViewById(R.id.tvFriends)
+        var tvFollowers: TextView = view.findViewById(R.id.tvFollowers)
         var tvHeart: TextView = view.findViewById(R.id.tvHeart)
+        var tvScore: TextView = view.findViewById(R.id.tvScore)
 
         init {
             itemView.setOnClickListener {
@@ -34,21 +35,24 @@ class ContentAdapter(private val topicDetails: List<Content>, private val contex
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_content_layout, parent, false)
+            .inflate(R.layout.item_trend_people_layout, parent, false)
 
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = topicDetails[position]
-        holder.tvContent.text = data.text
-        holder.name.text = data.user!!.name
-        holder.tvTime.text = "@"+ data.user!!.screenName
-        Glide.with(context).load(data.user!!.profileImageUrl).into(holder.imvAva)
+        holder.name.text = data.name
+        holder.tvNameScreen.text = "@"+data.screen_name
+        Glide.with(context).load(data.profile_image_url).into(holder.imvAva)
 
-        holder.tvComment.text = data.replyCount.toString()
-        holder.tvReload.text = data.retweetCount.toString()
-        holder.tvHeart.text = data.favoriteCount.toString()
+        holder.tvFriends.text = data.friends_count.toString()
+        holder.tvFollowers.text = data.followers_count.toString()
+        holder.tvHeart.text = data.like_count.toString()
+        holder.tvScore.text = data.influencer_score.toString()
+
+
+
 
     }
 

@@ -68,7 +68,7 @@ class UserMention {
 
 }
 
-class User {
+class UserMedia {
 
     @SerializedName("id")
     @Expose
@@ -88,7 +88,7 @@ class User {
 
 }
 
-class Entities {
+class EntitiesMedia {
 
     @SerializedName("hashtags")
     @Expose

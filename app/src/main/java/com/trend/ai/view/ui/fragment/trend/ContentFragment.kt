@@ -5,15 +5,12 @@ import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.trend.ai.R
 import com.trend.ai.core.base.BaseFragment
 import com.trend.ai.util.Utils
-import com.trend.ai.view.adapter.AchievementAdapter
 import com.trend.ai.view.adapter.ContentAdapter
 import kotlinx.android.synthetic.main.fragment_content.*
 
@@ -62,7 +59,7 @@ class ContentFragment : BaseFragment<TrendViewModel>() {
         viewModel!!.contents.observe(this, Observer {
             mShimmerViewContainer.stopShimmerAnimation()
             mShimmerViewContainer.visibility = View.GONE
-            val mAdapter = ContentAdapter(it!!)
+            val mAdapter = ContentAdapter(it!!,context!!)
             rcView.layoutManager = LinearLayoutManager(activity)
             rcView.setHasFixedSize(false)
             rcView.adapter = mAdapter

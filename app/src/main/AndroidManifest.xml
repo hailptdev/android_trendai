@@ -14,8 +14,13 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".view.ui.actitivy.trend.TrendingActivity"
-                  android:theme="@style/MyMaterialTheme">
+        <!--<activity android:name=".view.ui.actitivy.login.ChooseCategoryActivity">-->
+        <!--</activity>-->
+        <activity android:name=".view.ui.actitivy.login.ChooseLocationActivity">
+        </activity>
+        <activity
+                android:name=".view.ui.actitivy.trend.TrendingActivity"
+                android:theme="@style/MyMaterialTheme">
         </activity>
         <activity
                 android:name=".view.ui.actitivy.menu.MenuLeftActivity"
@@ -33,7 +38,7 @@
         <!-- <activity android:name=".view.ui.actitivy.menu.MenuNormalActivity"> -->
         <!-- </activity> -->
         <activity
-                android:name=".view.ui.actitivy.SplashActivity"
+                android:name=".view.ui.actitivy.login.ChooseCategoryActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

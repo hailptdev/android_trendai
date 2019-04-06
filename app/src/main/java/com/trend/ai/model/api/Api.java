@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.trend.ai.model.api.request.LoginReq;
 import com.trend.ai.model.api.response.Content;
 import com.trend.ai.model.api.response.Influencer;
+import com.trend.ai.model.api.response.Media;
 import com.trend.ai.model.api.response.Topic;
 import com.trend.ai.model.api.response.category.CategoryRes;
 import com.trend.ai.model.api.response.login.Login;
@@ -59,14 +60,15 @@ public interface Api {
     Observable<ArrayList<Topic>> getTopics(@Header("Authorization") String s, @Query("category_id") String  category_id);
 
     @GET("trends/influencers/interest") // Topics
-    Observable<ArrayList<Influencer>> getInfluencers(@Header("Authorization") String s, @Query("category_id") String  category_id);
+    Observable<ArrayList<Influencer>> getPeople(@Header("Authorization") String s, @Query("category_id") String  category_id);
 
 
     @GET("trends/contents/interest") // Contents
     Observable<ArrayList<Content>> getContent(@Header("Authorization") String s,@Query("category_id") String  category_id);
 
     @GET("trends/medias/interest") // Medias
-    Observable<ArrayList<Content>> getMedias(@Header("Authorization") String s,@Query("category_id") String  category_id,@Query("filter") String filter);
+    Observable<ArrayList<Media>> getMedias(@Header("Authorization") String s, @Query("category_id") String  category_id);
+//    Observable<ArrayList<Media>> getMedias(@Header("Authorization") String s, @Query("category_id") String  category_id, @Query("filter") String filter);
 
     // From Location
 
