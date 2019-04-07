@@ -8,12 +8,14 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.ads.interactivemedia.v3.api.AdEvent
+import com.google.android.exoplayer2.ext.ima.ImaAdsLoader
 import com.trend.ai.R
 import com.trend.ai.core.base.BaseFragment
 import com.trend.ai.model.api.request.MediaReq
 import com.trend.ai.util.Utils
-import com.trend.ai.view.adapter.MediaAdapter
-import kotlinx.android.synthetic.main.fragment_content.*
+import kotlinx.android.synthetic.main.fragment_media.*
+import toro.demo.ads.ima.ImaDemoAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +27,11 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 
-class VideosFragment : BaseFragment<TrendViewModel>() {
+class VideosFragment : BaseFragment<TrendViewModel>(), AdEvent.AdEventListener {
+    override fun onAdEvent(p0: AdEvent?) {
+
+    }
+
     var viewModel: TrendViewModel? = null
 
     override fun getViewModel(): Class<TrendViewModel> {
@@ -63,14 +69,18 @@ class VideosFragment : BaseFragment<TrendViewModel>() {
         viewModel!!.medias.observe(this, Observer {
             mShimmerViewContainer.stopShimmerAnimation()
             mShimmerViewContainer.visibility = View.GONE
-            val mAdapter = MediaAdapter(it!!,context!!)
-            rcView.layoutManager = LinearLayoutManager(activity)
-            rcView.setHasFixedSize(false)
-            rcView.adapter = mAdapter
-            mAdapter.onItemClick = { cate ->
-
-            }
+//            val mAdapter = MediaAdapter(it!!,context!!)
+//            rcView.layoutManager = LinearLayoutManager(activity)
+//            rcView.setHasFixedSize(false)
+//            rcView.adapter = mAdapter
+//            mAdapter.onItemClick = { cate ->
+//
+//            }
             swipeContainer.isRefreshing = false
+
+            native_recycler_view.layoutManager = LinearLayoutManager(requireContext())
+            val adapter = ImaDemoAdapter(ImaAdsLoader.Builder(requireContext()).setAdEventListener(this),it!!,context!!)
+            native_recycler_view.adapter = adapter
 
         })
         val photoReq = MediaReq()

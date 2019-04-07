@@ -45,7 +45,7 @@ class PhotosFragment : BaseFragment<TrendViewModel>() {
         savedInstanceState: Bundle?
     ): View? {
         init()
-        return inflater.inflate(R.layout.fragment_media, container, false)
+        return inflater.inflate(R.layout.fragment_photos, container, false)
     }
 
 

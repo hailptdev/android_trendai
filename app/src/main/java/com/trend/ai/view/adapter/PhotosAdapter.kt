@@ -20,10 +20,9 @@ class PhotosAdapter(private val topicDetails: List<Media>, private val context:C
         var tvContent: TextView = view.findViewById(R.id.tvContent)
         var imvPhoto: ImageView = view.findViewById(R.id.imvPhotos)
 
-        var tvFriends: TextView = view.findViewById(R.id.tvFriends)
-        var tvFollowers: TextView = view.findViewById(R.id.tvFollowers)
-        var tvHeart: TextView = view.findViewById(R.id.tvHeart)
-        var tvScore: TextView = view.findViewById(R.id.tvScore)
+        var tvComment: TextView = itemView.findViewById(R.id.tvComment)
+        var tvReload: TextView = itemView.findViewById(R.id.tvReload)
+        var tvHeart: TextView = itemView.findViewById(R.id.tvHeart)
 
         init {
             itemView.setOnClickListener {
@@ -50,10 +49,9 @@ class PhotosAdapter(private val topicDetails: List<Media>, private val context:C
         Glide.with(context).load(data.user!!.profileImageUrl).into(holder.imvAva)
         Glide.with(context).load(data.entities!!.media!![0].mediaUrl).into(holder.imvPhoto)
 
-//        holder.tvFriends.text = data.friends_count.toString()
-//        holder.tvFollowers.text = data.followers_count.toString()
-//        holder.tvHeart.text = data.like_count.toString()
-//        holder.tvScore.text = data.influencer_score.toString()
+        holder.tvComment.text = data.replyCount.toString()
+        holder.tvReload.text = data.retweetCount.toString()
+        holder.tvHeart.text = data.favoriteCount.toString()
 
 
 

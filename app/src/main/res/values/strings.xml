@@ -16,4 +16,12 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_menu_left">MenuLeftActivity</string>
     <string name="trans_shared_image">shared_image</string>
+
+    <string name="ima_content_url"><![CDATA[https://video.twimg.com/ext_tw_video/1114512887056199682/pu/vid/1280x720/M3fD_FfG68yHNV5E.mp4?tag=8]]></string>
+
+    <string name="ima_ad_tag_url">
+        <![CDATA[
+    https://video.twimg.com/ext_tw_video/1114512887056199682/pu/vid/1280x720/M3fD_FfG68yHNV5E.mp4?tag=8
+]]>
+    </string>
 </resources>

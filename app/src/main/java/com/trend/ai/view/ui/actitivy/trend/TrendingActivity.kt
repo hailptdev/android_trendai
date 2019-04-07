@@ -14,9 +14,6 @@ import com.trend.ai.view.ui.fragment.trend.*
 import kotlinx.android.synthetic.main.activity_trending.*
 
 
-
-
-
 class TrendingActivity : AppCompatActivity() {
 
     var CATEGORY_ID_KEY = "CATEGORY_ID_KEY"

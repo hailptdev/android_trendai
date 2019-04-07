@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+
+
+    <RelativeLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <ImageView android:layout_centerVertical="true"
+                   android:id="@+id/imvComment"
+                   android:layout_width="16dp" android:layout_height="16dp"
+                   android:src="@drawable/ic_trend_comment"/>
+
+        <TextView
+                android:textColor="@color/trend_name"
+                android:id="@+id/tvComment"
+                android:layout_marginLeft="2dp"
+                android:layout_toRightOf="@+id/imvComment"
+                android:text="Comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_marginLeft="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/imvReload"
+                android:layout_width="16dp" android:layout_height="16dp"
+                android:src="@drawable/ic_trend_reload"/>
+
+        <TextView android:textColor="@color/trend_name"
+                  android:id="@+id/tvReload"
+                  android:layout_marginLeft="2dp"
+                  android:layout_toRightOf="@+id/imvReload"
+                  android:text="Reload"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_marginLeft="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <ImageView android:layout_centerVertical="true"
+                   android:id="@+id/imvHeart"
+                   android:layout_width="16dp" android:layout_height="16dp"
+                   android:src="@drawable/ic_trend_heart"/>
+
+        <TextView android:textColor="@color/trend_name"
+                  android:id="@+id/tvHeart"
+                  android:layout_marginLeft="2dp"
+                  android:layout_toRightOf="@+id/imvHeart"
+                  android:text="Heart"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

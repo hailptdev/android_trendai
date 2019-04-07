@@ -51,7 +51,7 @@ dependencies {
     def espressoVersion = "3.0.1"
     def anko = "0.10.1"
     def timber = "4.6.0"
-
+    def latest_release = '3.6.2.2903'
 
 
 
@@ -111,4 +111,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
 //    implementation 'com.google.android.material:material:1.0.0'
+
+    implementation "im.ene.toro3:toro:${latest_release}"
+    implementation "im.ene.toro3:toro-ext-exoplayer:${latest_release}"
 }

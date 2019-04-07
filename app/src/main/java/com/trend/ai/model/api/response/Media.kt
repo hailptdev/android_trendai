@@ -44,10 +44,10 @@ class Media {
     var user: User? = null
     @SerializedName("twitter_id")
     @Expose
-    var twitterId: Double? = null
+    var twitterId: Long? = null
     @SerializedName("twitter_user_id")
     @Expose
-    var twitterUserId: Double? = null
+    var twitterUserId: Long? = null
     @SerializedName("text")
     @Expose
     var text: String? = null
@@ -59,16 +59,16 @@ class Media {
     var entities: Entities? = null
     @SerializedName("favorite_count")
     @Expose
-    var favoriteCount: Double? = null
+    var favoriteCount: Long? = null
     @SerializedName("quote_count")
     @Expose
-    var quoteCount: Double? = null
+    var quoteCount: Long? = null
     @SerializedName("reply_count")
     @Expose
-    var replyCount: Double? = null
+    var replyCount: Long? = null
     @SerializedName("retweet_count")
     @Expose
-    var retweetCount: Double? = null
+    var retweetCount: Long? = null
     @SerializedName("content_score")
     @Expose
     var contentScore: Float? = null
@@ -86,7 +86,7 @@ class Medium {
 
     @SerializedName("indices")
     @Expose
-    var indices: List<Double>? = null
+    var indices: List<Long>? = null
     @SerializedName("display_url")
     @Expose
     var displayUrl: String? = null
@@ -98,7 +98,7 @@ class Medium {
     var url: String? = null
     @SerializedName("twitter_id")
     @Expose
-    var twitterId: Double? = null
+    var twitterId: Long? = null
     @SerializedName("media_url")
     @Expose
     var mediaUrl: String? = null
@@ -107,7 +107,7 @@ class Medium {
     var mediaUrlHttps: String? = null
     @SerializedName("source_status_id")
     @Expose
-    var sourceStatusId: Double? = null
+    var sourceStatusId: Long? = null
     @SerializedName("type")
     @Expose
     var type: String? = null
