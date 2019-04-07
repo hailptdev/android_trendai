@@ -23,6 +23,7 @@ import javax.inject.Singleton;
 public class NetworkModule {
     public String BASE_URL = "http://myelcom.elcom.com.vn:8000/api/";
     public static String BASE_URL2 = "https://trendai-bb810.appspot.com/v1/";
+    public static String BASE_URL_TWITTER = "https://api.twitter.com/1.1/trends/";
     @Provides
     @Singleton
     LoggingInterceptor provideInterceptor() {

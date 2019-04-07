@@ -7,7 +7,6 @@ import com.trend.ai.util.Config
 import com.trend.ai.util.PreferUtils
 import com.trend.ai.view.ui.actitivy.login.LoginActivity
 import com.trend.ai.view.ui.actitivy.menu.MenuLeftActivity
-import com.trend.ai.view.ui.actitivy.menu.MenuNormalActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -18,8 +17,11 @@ class SplashActivity : AppCompatActivity() {
         if(PreferUtils.getUserToken(baseContext) != ""){
             MenuLeftActivity.startActivity(application)
             Config.TOKEN = PreferUtils.getUserToken(baseContext)
+
+//            ChooseLocationActivity.startActivity(application)
         } else {
             LoginActivity.startActivity(application)
+//            ChooseLocationActivity.startActivity(application)
         }
 
         finish()

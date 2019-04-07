@@ -2,6 +2,7 @@ package com.trend.ai.di;
 
 
 import com.trend.ai.MainActivity;
+import com.trend.ai.view.ui.actitivy.login.ChooseLocationActivity;
 import com.trend.ai.view.ui.actitivy.login.LoginActivity;
 import com.trend.ai.view.ui.actitivy.menu.MenuLeftActivity;
 import com.trend.ai.view.ui.actitivy.menu.MenuNormalActivity;
@@ -51,5 +52,8 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector
     abstract PhotosFragment bindPhotosFragment();
+
+    @ContributesAndroidInjector
+    abstract ChooseLocationActivity bindChooseLocationActivity();
 
 }

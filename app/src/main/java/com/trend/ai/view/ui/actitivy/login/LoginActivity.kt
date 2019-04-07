@@ -12,7 +12,6 @@ import com.trend.ai.model.api.request.LoginReq
 import com.trend.ai.util.Config
 import com.trend.ai.util.PreferUtils
 import com.trend.ai.view.ui.actitivy.menu.MenuLeftActivity
-import com.trend.ai.view.ui.actitivy.menu.MenuNormalActivity
 import com.twitter.sdk.android.core.Callback
 import com.twitter.sdk.android.core.Result
 import com.twitter.sdk.android.core.TwitterException
@@ -46,6 +45,8 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 Config.TOKEN = it.token.accessToken
                 PreferUtils.setUserToken(baseContext, it.token.accessToken)
                 MenuLeftActivity.startActivity(application)
+
+//                ChooseLocationActivity.startActivity(application)
                 finish()
             }
         })

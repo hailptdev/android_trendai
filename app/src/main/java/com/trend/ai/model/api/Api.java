@@ -8,6 +8,7 @@ import com.trend.ai.model.api.response.Influencer;
 import com.trend.ai.model.api.response.Media;
 import com.trend.ai.model.api.response.Topic;
 import com.trend.ai.model.api.response.category.CategoryRes;
+import com.trend.ai.model.api.response.category.Country;
 import com.trend.ai.model.api.response.login.Login;
 import com.trend.ai.model.api.response.login.User;
 import com.trend.ai.model.data.Articles;
@@ -16,6 +17,7 @@ import io.reactivex.Observable;
 import retrofit2.http.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author ihsan on 11/29/17.
@@ -72,4 +74,7 @@ public interface Api {
 
     // From Location
 
+    // Get Countries Twitter
+    @POST("auth/login")
+    Observable<List<Country>> getCountries(@Header("Authorization") String s);
 }
