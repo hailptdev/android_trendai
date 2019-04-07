@@ -14,8 +14,12 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <!--<activity android:name=".view.ui.actitivy.login.ChooseCategoryActivity">-->
-        <!--</activity>-->
+        <activity
+                android:theme="@style/AppTheme.NoActionBar"
+                android:name=".view.ui.actitivy.trend.ImageDetailActivity">
+        </activity>
+        <!-- <activity android:name=".view.ui.actitivy.login.ChooseCategoryActivity"> -->
+        <!-- </activity> -->
         <activity android:name=".view.ui.actitivy.login.ChooseLocationActivity">
         </activity>
         <activity

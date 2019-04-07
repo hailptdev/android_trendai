@@ -3,6 +3,7 @@ package com.trend.ai.view.ui.fragment.trend
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.trend.ai.core.base.BaseFragment
 import com.trend.ai.model.api.request.MediaReq
 import com.trend.ai.util.Utils
 import com.trend.ai.view.adapter.PhotosAdapter
+import com.trend.ai.view.ui.actitivy.trend.ImageDetailActivity
 import kotlinx.android.synthetic.main.fragment_content.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -67,8 +69,14 @@ class PhotosFragment : BaseFragment<TrendViewModel>() {
             rcView.layoutManager = LinearLayoutManager(activity)
             rcView.setHasFixedSize(false)
             rcView.adapter = mAdapter
-            mAdapter.onItemClick = { cate ->
-
+            mAdapter.onItemClick = { cate,view ->
+                val viewAnimation = view.findViewById<View>(R.id.imvPhoto)
+                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    activity!!,
+                    viewAnimation,
+                    getString(R.string.trans_shared_image)
+                )
+                 ImageDetailActivity.start(context!!,cate.entities!!.media!![0].mediaUrl!!,options)
             }
             swipeContainer.isRefreshing = false
 

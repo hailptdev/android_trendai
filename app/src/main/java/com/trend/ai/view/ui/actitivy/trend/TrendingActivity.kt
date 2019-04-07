@@ -34,7 +34,7 @@ class TrendingActivity : AppCompatActivity() {
 
         if (intent != null){
             cateId = intent.getStringExtra("CATEGORY_ID_KEY")
-            Log.e("hailpt"," ~~> "+cateId)
+            Log.e("hailpt"," TrendingActivity ~~> "+cateId)
         }
 
     }

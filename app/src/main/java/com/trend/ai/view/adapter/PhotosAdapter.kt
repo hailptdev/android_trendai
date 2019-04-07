@@ -12,13 +12,13 @@ import com.trend.ai.R
 import com.trend.ai.model.api.response.Media
 
 class PhotosAdapter(private val topicDetails: List<Media>, private val context:Context) : RecyclerView.Adapter<PhotosAdapter.MyViewHolder>() {
-    var onItemClick: ((Media) -> Unit)? = null
+    var onItemClick: ((Media,View) -> Unit)? = null
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView = view.findViewById(R.id.tvName)
         var imvAva: ImageView = view.findViewById(R.id.imvAva)
         var tvNameScreen: TextView = view.findViewById(R.id.tvNameScreen)
         var tvContent: TextView = view.findViewById(R.id.tvContent)
-        var imvPhoto: ImageView = view.findViewById(R.id.imvPhoto)
+        var imvPhoto: ImageView = view.findViewById(R.id.imvPhotos)
 
         var tvFriends: TextView = view.findViewById(R.id.tvFriends)
         var tvFollowers: TextView = view.findViewById(R.id.tvFollowers)
@@ -27,7 +27,7 @@ class PhotosAdapter(private val topicDetails: List<Media>, private val context:C
 
         init {
             itemView.setOnClickListener {
-                onItemClick?.invoke(topicDetails[adapterPosition])
+                onItemClick?.invoke(topicDetails[adapterPosition],itemView)
             }
         }
 
