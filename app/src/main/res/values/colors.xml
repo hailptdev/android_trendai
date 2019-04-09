@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1DA1F2</color>
+    <!--<color name="colorPrimary">#1DA1F2</color>-->
+    <color name="colorPrimary">#ffffff</color>
+    <!--<color name="colorPrimaryDark">#ffffff</color>-->
     <color name="colorPrimaryDark">#1B95E0</color>
+    <color name="textColorPrimary">#1B95E0</color>
     <color name="colorAccent">#D81B60</color>
     <color name="transparent">#00000000</color>
     <color name="placeholder_bg">#dddddd</color>
@@ -11,4 +14,5 @@
     <color name="trend_line">#d6dbdf</color>
     <color name="trend_content">#0e1316</color>
     <color name="bgBottomNavigation">#fe485a</color>
+    <color name="colorTwitter">#1DA1F2</color>
 </resources>

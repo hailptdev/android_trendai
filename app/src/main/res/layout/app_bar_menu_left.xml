@@ -2,69 +2,38 @@
 <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed"
-        tools:context=".view.ui.actitivy.menu.MenuLeftActivity">
+        android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:layout_height="wrap_content"
+            android:theme="@style/ToolbarColoredBackArrow">
 
         <android.support.v7.widget.Toolbar
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:theme="@style/ToolbarColoredBackArrow"
+                app:titleTextColor="@color/trend_nick_name"
+                app:subtitleTextColor="#1DA1F2"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
-
-            <TextView
-                    android:visibility="gone"
-                    android:textColor="#ffffff"
-                    android:textSize="20sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Toolbar Title"
-                    android:layout_gravity="center"
-                    android:id="@+id/toolbar_title" />
-
-        </android.support.v7.widget.Toolbar>
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ToolbarColoredBackArrow"/>
 
         <android.support.design.widget.TabLayout
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                android:id="@+id/tab_layout"
+                app:tabIndicatorColor="#1DA1F2"
+                app:tabTextColor="@color/trend_name"
+                app:tabSelectedTextColor="#1DA1F2"
+                app:tabMode="fixed"
+                android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabTextAppearance="@style/MineCustomTabText"
-                app:tabMode="fixed"
                 app:tabGravity="fill"/>
-
     </android.support.design.widget.AppBarLayout>
 
-    <!--<include layout="@layout/content_menu_left"/>-->
-
-
     <android.support.v4.view.ViewPager
-            android:paddingTop="50dp"
-            android:id="@+id/pager"
-            android:layout_weight="1"
+            android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-    />
-
-
-
-
-    <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@android:drawable/ic_dialog_email"/>
-
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 </android.support.design.widget.CoordinatorLayout>

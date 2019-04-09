@@ -31,10 +31,12 @@ class MenuLeftActivity : BaseActivity<MenuViewModel, ActivityMenuLeftBinding>(),
 
     override fun onCreate(instance: Bundle?, viewModel: MenuViewModel?, binding: ActivityMenuLeftBinding?) {
         setSupportActionBar(toolbar)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+        toolbar.title = "Trending"
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+//        fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show()
+//        }
 
         val toggle = ActionBarDrawerToggle(
             this,
@@ -45,7 +47,7 @@ class MenuLeftActivity : BaseActivity<MenuViewModel, ActivityMenuLeftBinding>(),
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-        toolbar.title = ""
+
         nav_view.setNavigationItemSelectedListener(this)
 
         if (viewModel != null) {
@@ -161,19 +163,19 @@ class MenuLeftActivity : BaseActivity<MenuViewModel, ActivityMenuLeftBinding>(),
 
     private fun configureTabLayout() {
 
-        tab_layout.addTab(tab_layout.newTab().setText("Location"))
-        tab_layout.addTab(tab_layout.newTab().setText("Category"))
+        tabs.addTab(tabs.newTab().setText("Location"))
+        tabs.addTab(tabs.newTab().setText("Category"))
 
         val adapter = TabPagerAdapter(supportFragmentManager,
-            tab_layout.tabCount)
-        pager.adapter = adapter
+            tabs.tabCount)
+        viewpager.adapter = adapter
 
-        pager.addOnPageChangeListener(
-            TabLayout.TabLayoutOnPageChangeListener(tab_layout))
-        tab_layout.addOnTabSelectedListener(object :
+        viewpager.addOnPageChangeListener(
+            TabLayout.TabLayoutOnPageChangeListener(tabs))
+        tabs.addOnTabSelectedListener(object :
             TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                pager.currentItem = tab.position
+                viewpager.currentItem = tab.position
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {

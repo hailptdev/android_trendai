@@ -46,11 +46,14 @@
     </style>
 
     <style name="ToolbarColoredBackArrow" parent="AppTheme">
-        <item name="android:textColorSecondary">#ffffff</item>
-        <item name="android:textColorPrimary">#ffffff</item>
+        <item name="android:textColorSecondary">@color/colorTwitter</item>
+        <item name="android:textColorPrimary">@color/colorTwitter</item>
     </style>
 
-
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- Customize color of navigation drawer icon and back arrow -->
+        <item name="colorControlNormal">@color/colorTwitter</item>
+    </style>
 
     <style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowNoTitle">true</item>

@@ -92,6 +92,8 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 Toast.makeText(context, exception.message, Toast.LENGTH_SHORT).show()
             }
         })
+
+//        TwitterAuthClient().
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
