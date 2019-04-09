@@ -34,7 +34,6 @@ class ContentFragment : BaseFragment<TrendViewModel>() {
     override fun onCreate(instance: Bundle?, viewModel: TrendViewModel?) {
         if (viewModel != null) {
             this.viewModel = viewModel
-
         }
     }
 
