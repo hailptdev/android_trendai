@@ -93,18 +93,7 @@ class MenuLeftActivity : BaseActivity<MenuViewModel, ActivityMenuLeftBinding>(),
             com.trend.ai.R.id.nav_gallery -> {
 
             }
-            com.trend.ai.R.id.nav_slideshow -> {
 
-            }
-            com.trend.ai.R.id.nav_manage -> {
-
-            }
-            com.trend.ai.R.id.nav_share -> {
-
-            }
-            com.trend.ai.R.id.nav_send -> {
-
-            }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
