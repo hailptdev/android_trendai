@@ -19,12 +19,45 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="#ffffff"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                android:background="@color/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                    android:visibility="gone"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Toolbar Title"
+                    android:layout_gravity="center"
+                    android:id="@+id/toolbar_title" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.design.widget.TabLayout
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabTextAppearance="@style/MineCustomTabText"
+                app:tabMode="fixed"
+                app:tabGravity="fill"/>
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_menu_left"/>
+    <!--<include layout="@layout/content_menu_left"/>-->
+
+
+    <android.support.v4.view.ViewPager
+            android:paddingTop="50dp"
+            android:id="@+id/pager"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+    />
+
+
+
 
     <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"

@@ -56,4 +56,7 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector
     abstract ChooseLocationActivity bindChooseLocationActivity();
 
+    @ContributesAndroidInjector
+    abstract LocationFragment bindLocationFragment();
+
 }
