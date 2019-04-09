@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.trend.ai.R
 import com.trend.ai.core.base.BaseActivity
@@ -60,9 +61,9 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 loginReq.access_token = PreferUtils.getSecretToken(baseContext)
                 loginReq.access_token_secret = PreferUtils.getToken(baseContext)
 
-                viewModel.setLoginParam(loginReq)
+//                viewModel.setLoginParam(loginReq)
 
-//                requestEmailAddress(applicationContext, result.data)
+                requestEmailAddress(applicationContext, result.data)
             }
 
             override fun failure(exception: TwitterException) {
@@ -83,14 +84,26 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     }
 
     private fun requestEmailAddress(context: Context, session: TwitterSession) {
-        TwitterAuthClient().requestEmail(session, object : Callback<String>() {
-            override fun success(result: Result<String>) {
-                Toast.makeText(context, result.data, Toast.LENGTH_SHORT).show()
+//        TwitterAuthClient().requestEmail(session, object : Callback<String>() {
+//            override fun success(result: Result<String>) {
+//                Toast.makeText(context, result.data, Toast.LENGTH_SHORT).show()
+//            }
+//
+//            override fun failure(exception: TwitterException) {
+//                Toast.makeText(context, exception.message, Toast.LENGTH_SHORT).show()
+//            }
+//        })
+
+        TwitterAuthClient().authorize(this, object : Callback<TwitterSession>(){
+
+            override fun success(result: Result<TwitterSession>?) {
+                Log.e("hailpt",""+result!!.data.authToken)
             }
 
-            override fun failure(exception: TwitterException) {
-                Toast.makeText(context, exception.message, Toast.LENGTH_SHORT).show()
+            override fun failure(exception: TwitterException?) {
+                Log.e("hailpt","error")
             }
+
         })
 
 //        TwitterAuthClient().
