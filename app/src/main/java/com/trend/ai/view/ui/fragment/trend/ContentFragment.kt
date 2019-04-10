@@ -48,7 +48,7 @@ class ContentFragment : BaseFragment<TrendViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         swipeContainer.setOnRefreshListener {
-            viewModel!!.setContentParam("5c9b2f33ceddb700010694f5")
+            viewModel!!.setContentParam(Utils.testCateId)
         }
         Utils.setupColorForF5(swipeContainer)
     }
@@ -68,7 +68,7 @@ class ContentFragment : BaseFragment<TrendViewModel>() {
             swipeContainer.isRefreshing = false
 
         })
-        viewModel!!.setContentParam("5c9b2f33ceddb700010694f5")
+        viewModel!!.setContentParam(Utils.testCateId)
 
 
     }

@@ -17,7 +17,6 @@ import io.reactivex.Observable;
 import retrofit2.http.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author ihsan on 11/29/17.
@@ -75,6 +74,9 @@ public interface Api {
     // From Location
 
     // Get Countries Twitter
-    @POST("auth/login")
-    Observable<List<Country>> getCountries(@Header("Authorization") String s);
+    @GET("locations/woe/countries")
+    Observable<ArrayList<Country>> getCountries(@Header("Authorization") String s);
+
+    @GET("trends/location?{lat},{lng},{woeid}")
+    Observable<ArrayList<Topic>> getTrendsByLocation(@Header("Authorization") String s,@Path("lat") Long lat, @Path("lng") Long lng, @Path("woeid") Long woeid);
 }

@@ -9,6 +9,7 @@ import com.trend.ai.model.api.response.Content
 import com.trend.ai.model.api.response.Media
 import com.trend.ai.model.api.response.Topic
 import com.trend.ai.model.api.response.category.CategoryRes
+import com.trend.ai.model.api.response.category.Country
 import com.trend.ai.model.api.response.login.User
 import com.trend.ai.model.db.AppDatabase
 import com.trend.ai.util.Config
@@ -27,6 +28,11 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
     private val contentMutableLiveData: MutableLiveData<ArrayList<Content>> = MutableLiveData()
     private val userMutableLiveData: MutableLiveData<User> = MutableLiveData()
     private val mediacMutableLiveData: MutableLiveData<ArrayList<Media>> = MutableLiveData()
+
+    private val topiccMutableLiveData: MutableLiveData<ArrayList<Topic>> = MutableLiveData()
+
+
+    private val countriesMutableLiveData: MutableLiveData<ArrayList<Country>> = MutableLiveData()
 
     fun getCategories(): MutableLiveData<ArrayList<CategoryRes>> {
         api.getCategories2(Config.TOKEN)
@@ -110,6 +116,59 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
                 }
             })
         return userMutableLiveData
+    }
+
+    fun getCountries(isGet:Boolean): MutableLiveData<ArrayList<Country>> {
+        api.getCountries(Config.TOKEN)
+            .observeOn(schedulerProvider.ui())
+            .subscribeOn(schedulerProvider.io())
+            .map { data -> data }
+            .subscribe(object : Observer<ArrayList<Country>> {
+                override fun onSubscribe(d: Disposable) {
+                    disposables.add(d)
+                }
+
+                override fun onNext(data: ArrayList<Country>) {
+                    countriesMutableLiveData.postValue(data)
+                    Log.e("hailpt"," getCountries onNext ")
+                }
+
+                override fun onError(e: Throwable) {
+                    Log.e("hailpt"," getCountries onError ")
+                }
+
+                override fun onComplete() {
+                    Log.e("hailpt"," getCountries onComplete ")
+                }
+            })
+        return countriesMutableLiveData
+    }
+
+
+    fun getTrendsByLocation(isGet:Boolean): MutableLiveData<ArrayList<Topic>> {
+        api.getTrendsByLocation(Config.TOKEN,1,1,23424740)
+            .observeOn(schedulerProvider.ui())
+            .subscribeOn(schedulerProvider.io())
+            .map { data -> data }
+            .subscribe(object : Observer<ArrayList<Topic>> {
+                override fun onSubscribe(d: Disposable) {
+                    disposables.add(d)
+                }
+
+                override fun onNext(data: ArrayList<Topic>) {
+                    topiccMutableLiveData.postValue(data)
+                    Log.e("hailpt"," getCountries onNext ")
+                }
+
+                override fun onError(e: Throwable) {
+                    Log.e("hailpt"," getCountries onError ")
+                }
+
+                override fun onComplete() {
+                    Log.e("hailpt"," getCountries onComplete ")
+                }
+            })
+        return topiccMutableLiveData
     }
 
 

@@ -50,7 +50,7 @@ class InfluencerFragment :  BaseFragment<TrendViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         swipeContainer.setOnRefreshListener {
-            viewModel!!.setPeopleParam("5c9b2f33ceddb700010694f5")
+            viewModel!!.setPeopleParam(Utils.testCateId)
         }
         Utils.setupColorForF5(swipeContainer)
     }
@@ -70,7 +70,7 @@ class InfluencerFragment :  BaseFragment<TrendViewModel>() {
             swipeContainer.isRefreshing = false
 
         })
-        viewModel!!.setPeopleParam("5c9b2f33ceddb700010694f5")
+        viewModel!!.setPeopleParam(Utils.testCateId)
 
 
     }

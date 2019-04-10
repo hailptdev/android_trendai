@@ -57,7 +57,7 @@ class VideosFragment : BaseFragment<TrendViewModel>(), AdEvent.AdEventListener {
         super.onViewCreated(view, savedInstanceState)
         swipeContainer.setOnRefreshListener {
             val photoReq = MediaReq()
-            photoReq.cateId = "5c9b2f33ceddb700010694f5"
+            photoReq.cateId = Utils.testCateId
             photoReq.filter = "videos"
             viewModel!!.setMediaParam(photoReq)
         }
@@ -84,7 +84,7 @@ class VideosFragment : BaseFragment<TrendViewModel>(), AdEvent.AdEventListener {
 
         })
         val photoReq = MediaReq()
-        photoReq.cateId = "5c9b2f33ceddb700010694f5"
+        photoReq.cateId = Utils.testCateId
         photoReq.filter = "videos"
         viewModel!!.setMediaParam(photoReq)
 

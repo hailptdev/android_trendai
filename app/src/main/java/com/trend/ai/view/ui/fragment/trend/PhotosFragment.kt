@@ -53,7 +53,7 @@ class PhotosFragment : BaseFragment<TrendViewModel>() {
         super.onViewCreated(view, savedInstanceState)
         swipeContainer.setOnRefreshListener {
             val photoReq = MediaReq()
-            photoReq.cateId = "5c9b2f33ceddb700010694f5"
+            photoReq.cateId = Utils.testCateId
             photoReq.filter = "images"
             viewModel!!.setPhotosParam(photoReq)
         }
@@ -83,7 +83,7 @@ class PhotosFragment : BaseFragment<TrendViewModel>() {
         })
 
         val photoReq = MediaReq()
-        photoReq.cateId = "5c9b2f33ceddb700010694f5"
+        photoReq.cateId = Utils.testCateId
         photoReq.filter = "images"
         viewModel!!.setPhotosParam(photoReq)
 

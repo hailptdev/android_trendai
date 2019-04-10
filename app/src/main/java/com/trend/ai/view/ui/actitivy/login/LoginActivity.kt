@@ -61,9 +61,9 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 loginReq.access_token = PreferUtils.getSecretToken(baseContext)
                 loginReq.access_token_secret = PreferUtils.getToken(baseContext)
 
-//                viewModel.setLoginParam(loginReq)
+                viewModel.setLoginParam(loginReq)
 
-                requestEmailAddress(applicationContext, result.data)
+//                requestEmailAddress(applicationContext, result.data)
             }
 
             override fun failure(exception: TwitterException) {

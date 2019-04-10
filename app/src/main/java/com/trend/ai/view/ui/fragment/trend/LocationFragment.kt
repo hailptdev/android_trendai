@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +50,7 @@ class LocationFragment : BaseFragment<TrendViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         swipeContainer.setOnRefreshListener {
-            viewModel!!.setContentParam("5c9b2f33ceddb700010694f5")
+            viewModel!!.setContentParam(Utils.testCateId)
         }
         Utils.setupColorForF5(swipeContainer)
     }
@@ -64,12 +65,12 @@ class LocationFragment : BaseFragment<TrendViewModel>() {
             rcView.setHasFixedSize(false)
             rcView.adapter = mAdapter
             mAdapter.onItemClick = { cate ->
-
+                Log.e("hailpt"," ~~~~~~ ")
             }
             swipeContainer.isRefreshing = false
 
         })
-        viewModel!!.setContentParam("5c9b2f33ceddb700010694f5")
+        viewModel!!.setContentParam(Utils.testCateId)
 
 
     }
