@@ -26,10 +26,10 @@ public class AApp extends DaggerApplication {
     public void onCreate() {
         super.onCreate();
 
-        FontsOverride.setDefaultFont(this, "DEFAULT", "fonts/HelveticaWorld-Regular.ttf");
-        FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/HelveticaWorld-Regular.ttf");
-        FontsOverride.setDefaultFont(this, "SERIF", "fonts/HelveticaWorld-Regular.ttf");
-        FontsOverride.setDefaultFont(this, "SANS_SERIF", "fonts/HelveticaWorld-Regular.ttf");
+        FontsOverride.setDefaultFont(this, "DEFAULT", "fonts/RobotoLight.ttf");
+        FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/RobotoLight.ttf");
+        FontsOverride.setDefaultFont(this, "SERIF", "fonts/RobotoLight.ttf");
+        FontsOverride.setDefaultFont(this, "SANS_SERIF", "fonts/RobotoLight.ttf");
 
         TwitterConfig config = new TwitterConfig.Builder(this)
                 .logger(new DefaultLogger(Log.DEBUG))//enable logging when app is in debug mode

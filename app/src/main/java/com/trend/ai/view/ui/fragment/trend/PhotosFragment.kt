@@ -52,40 +52,76 @@ class PhotosFragment : BaseFragment<TrendViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         swipeContainer.setOnRefreshListener {
-            val photoReq = MediaReq()
-            photoReq.cateId = Utils.testCateId
-            photoReq.filter = "images"
-            viewModel!!.setPhotosParam(photoReq)
+            if (Utils.topicId == "") {
+                val photoReq = MediaReq()
+                photoReq.cateId = Utils.cateId
+                photoReq.filter = "images"
+                viewModel!!.setPhotosParam(photoReq)
+            } else {
+                val photoReq = MediaReq()
+                photoReq.cateId = Utils.topicId
+                photoReq.filter = "images"
+                viewModel!!.setPhotosParamByLocation(photoReq)
+            }
         }
         Utils.setupColorForF5(swipeContainer)
     }
 
     fun init() {
+        if (Utils.topicId == "") {
+            viewModel!!.photos.observe(this, Observer {
+                mShimmerViewContainer.stopShimmerAnimation()
+                mShimmerViewContainer.visibility = View.GONE
+                val mAdapter = PhotosAdapter(it!!, context!!)
+                rcView.layoutManager = LinearLayoutManager(activity)
+                rcView.setHasFixedSize(false)
+                rcView.adapter = mAdapter
+                mAdapter.onItemClick = { cate, view ->
+                    val viewAnimation = view.findViewById<View>(R.id.imvPhoto)
+                    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        activity!!,
+                        viewAnimation,
+                        getString(R.string.trans_shared_image)
+                    )
+                    ImageDetailActivity.start(context!!, cate.entities!!.media!![0].mediaUrl!!, options)
+                }
+                swipeContainer.isRefreshing = false
 
-        viewModel!!.photos.observe(this, Observer {
-            mShimmerViewContainer.stopShimmerAnimation()
-            mShimmerViewContainer.visibility = View.GONE
-            val mAdapter = PhotosAdapter(it!!,context!!)
-            rcView.layoutManager = LinearLayoutManager(activity)
-            rcView.setHasFixedSize(false)
-            rcView.adapter = mAdapter
-            mAdapter.onItemClick = { cate,view ->
-                val viewAnimation = view.findViewById<View>(R.id.imvPhoto)
-                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    activity!!,
-                    viewAnimation,
-                    getString(R.string.trans_shared_image)
-                )
-                 ImageDetailActivity.start(context!!,cate.entities!!.media!![0].mediaUrl!!,options)
-            }
-            swipeContainer.isRefreshing = false
+            })
 
-        })
+            val photoReq = MediaReq()
+            photoReq.cateId = Utils.cateId
+            photoReq.filter = "images"
+            viewModel!!.setPhotosParam(photoReq)
 
-        val photoReq = MediaReq()
-        photoReq.cateId = Utils.testCateId
-        photoReq.filter = "images"
-        viewModel!!.setPhotosParam(photoReq)
+        } else {
+            viewModel!!.photosByLocation.observe(this, Observer {
+                mShimmerViewContainer.stopShimmerAnimation()
+                mShimmerViewContainer.visibility = View.GONE
+                val mAdapter = PhotosAdapter(it!!, context!!)
+                rcView.layoutManager = LinearLayoutManager(activity)
+                rcView.setHasFixedSize(false)
+                rcView.adapter = mAdapter
+                mAdapter.onItemClick = { cate, view ->
+                    val viewAnimation = view.findViewById<View>(R.id.imvPhoto)
+                    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        activity!!,
+                        viewAnimation,
+                        getString(R.string.trans_shared_image)
+                    )
+                    ImageDetailActivity.start(context!!, cate.entities!!.media!![0].mediaUrl!!, options)
+                }
+                swipeContainer.isRefreshing = false
+
+            })
+
+            val photoReq = MediaReq()
+            photoReq.cateId = Utils.topicId
+            photoReq.filter = "images"
+            viewModel!!.setPhotosParamByLocation(photoReq)
+
+
+        }
 
 
     }

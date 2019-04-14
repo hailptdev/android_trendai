@@ -10,11 +10,14 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.trend.ai.R
-import com.trend.ai.view.ui.fragment.trend.*
+import com.trend.ai.view.ui.fragment.trend.ContentFragment
+import com.trend.ai.view.ui.fragment.trend.InfluencerFragment
+import com.trend.ai.view.ui.fragment.trend.PhotosFragment
+import com.trend.ai.view.ui.fragment.trend.VideosFragment
 import kotlinx.android.synthetic.main.activity_trending.*
 
 
-class TrendingActivity : AppCompatActivity() {
+class CategoryTrendingActivity : AppCompatActivity() {
 
     var CATEGORY_ID_KEY = "CATEGORY_ID_KEY"
     var cateId = ""
@@ -40,7 +43,7 @@ class TrendingActivity : AppCompatActivity() {
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(ContentFragment(), "Top")
-        adapter.addFragment(TopicFragment(), "Lasted")
+//        adapter.addFragment(TopicFragment(), "Lasted")
         adapter.addFragment(InfluencerFragment(), "Influencers")
         adapter.addFragment(PhotosFragment(), "Photos")
         adapter.addFragment(VideosFragment(), "Videos")
@@ -71,7 +74,7 @@ class TrendingActivity : AppCompatActivity() {
 
     companion object {
         fun start(activity: Context,id:String) {
-            val intent = Intent(activity, TrendingActivity::class.java)
+            val intent = Intent(activity, CategoryTrendingActivity::class.java)
             intent.putExtra("CATEGORY_ID_KEY", id)
             activity.startActivity(intent)
         }

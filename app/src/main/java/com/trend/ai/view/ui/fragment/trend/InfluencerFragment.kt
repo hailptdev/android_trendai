@@ -50,27 +50,49 @@ class InfluencerFragment :  BaseFragment<TrendViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         swipeContainer.setOnRefreshListener {
-            viewModel!!.setPeopleParam(Utils.testCateId)
+            if (Utils.topicId == "") {
+                viewModel!!.setPeopleParam(Utils.cateId)
+            } else {
+                viewModel!!.setPeopleByLocationParam(Utils.topicId)
+            }
         }
         Utils.setupColorForF5(swipeContainer)
     }
 
     fun init() {
+        if (Utils.topicId == "") {
+            viewModel!!.people.observe(this, Observer {
+                mShimmerViewContainer.stopShimmerAnimation()
+                mShimmerViewContainer.visibility = View.GONE
+                val mAdapter = PeopleAdapter(it!!, context!!)
+                rcView.layoutManager = LinearLayoutManager(activity)
+                rcView.setHasFixedSize(false)
+                rcView.adapter = mAdapter
+                mAdapter.onItemClick = { cate ->
 
-        viewModel!!.people.observe(this, Observer {
-            mShimmerViewContainer.stopShimmerAnimation()
-            mShimmerViewContainer.visibility = View.GONE
-            val mAdapter = PeopleAdapter(it!!,context!!)
-            rcView.layoutManager = LinearLayoutManager(activity)
-            rcView.setHasFixedSize(false)
-            rcView.adapter = mAdapter
-            mAdapter.onItemClick = { cate ->
+                }
+                swipeContainer.isRefreshing = false
 
-            }
-            swipeContainer.isRefreshing = false
+            })
+            viewModel!!.setPeopleParam(Utils.cateId)
+        } else {
 
-        })
-        viewModel!!.setPeopleParam(Utils.testCateId)
+            viewModel!!.peopleByLocation.observe(this, Observer {
+                mShimmerViewContainer.stopShimmerAnimation()
+                mShimmerViewContainer.visibility = View.GONE
+                val mAdapter = PeopleAdapter(it!!, context!!)
+                rcView.layoutManager = LinearLayoutManager(activity)
+                rcView.setHasFixedSize(false)
+                rcView.adapter = mAdapter
+                mAdapter.onItemClick = { cate ->
+
+                }
+                swipeContainer.isRefreshing = false
+
+            })
+            viewModel!!.setPeopleByLocationParam(Utils.topicId)
+
+        }
 
 
     }

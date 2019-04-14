@@ -73,10 +73,23 @@ public interface Api {
 
     // From Location
 
+    @GET("trends/contents/location") // Contents
+    Observable<ArrayList<Content>> getContentByLocation(@Header("Authorization") String s,@Query("topic_id") String  topic_id);
+
+    @GET("trends/influencers/location") // Contents
+    Observable<ArrayList<Influencer>> getPeopleByLocation(@Header("Authorization") String s,@Query("topic_id") String  topic_id);
+
+    @GET("trends/medias/location") // Medias
+    Observable<ArrayList<Media>> getMediasByLocation(@Header("Authorization") String s, @Query("topic_id") String  topic_id, @Query("filter") String filter);
+
+
     // Get Countries Twitter
     @GET("locations/woe/countries")
     Observable<ArrayList<Country>> getCountries(@Header("Authorization") String s);
 
-    @GET("trends/location?{lat},{lng},{woeid}")
-    Observable<ArrayList<Topic>> getTrendsByLocation(@Header("Authorization") String s,@Path("lat") Long lat, @Path("lng") Long lng, @Path("woeid") Long woeid);
+    @GET("trends/location")
+    Observable<ArrayList<Topic>> getTrendsByLocation(@Header("Authorization") String s,@Query("lat") Long lat, @Query("lng") Long lng, @Query("woeid") Long woeid);
+
+
+
 }

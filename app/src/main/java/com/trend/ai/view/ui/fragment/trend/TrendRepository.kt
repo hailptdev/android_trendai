@@ -162,6 +162,114 @@ internal constructor(database: AppDatabase, private val api: Api, private val sc
         return photosMutableLiveData
     }
 
+
+    fun getContentByLocation(topicId:String): MutableLiveData<ArrayList<Content>> {
+        api.getContentByLocation(Config.TOKEN, topicId)
+            .observeOn(schedulerProvider.ui())
+            .subscribeOn(schedulerProvider.io())
+            .map { data -> data }
+            .subscribe(object : Observer<ArrayList<Content>> {
+                override fun onSubscribe(d: Disposable) {
+                    disposables.add(d)
+                }
+
+                override fun onNext(data: ArrayList<Content>) {
+                    contentMutableLiveData.postValue(data)
+                    Log.e("hailpt"," getContent onNext ")
+                }
+
+                override fun onError(e: Throwable) {
+                    Log.e("hailpt"," getContent onError ")
+                }
+
+                override fun onComplete() {
+                    Log.e("hailpt"," getContent onComplete ")
+                }
+            })
+        return contentMutableLiveData
+    }
+
+
+
+    fun getPeopleByLocation(topicId:String): MutableLiveData<ArrayList<Influencer>> {
+        api.getPeopleByLocation(Config.TOKEN, topicId)
+            .observeOn(schedulerProvider.ui())
+            .subscribeOn(schedulerProvider.io())
+            .map { data -> data }
+            .subscribe(object : Observer<ArrayList<Influencer>> {
+                override fun onSubscribe(d: Disposable) {
+                    disposables.add(d)
+                }
+
+                override fun onNext(data: ArrayList<Influencer>) {
+                    peopleMutableLiveData.postValue(data)
+                    Log.e("hailpt"," getContent onNext ")
+                }
+
+                override fun onError(e: Throwable) {
+                    Log.e("hailpt"," getContent onError ")
+                }
+
+                override fun onComplete() {
+                    Log.e("hailpt"," getContent onComplete ")
+                }
+            })
+        return peopleMutableLiveData
+    }
+
+    fun getPhotosByLocation(topicId:String, filter:String): MutableLiveData<ArrayList<Media>> {
+        api.getMediasByLocation(Config.TOKEN,topicId,filter)
+            .observeOn(schedulerProvider.ui())
+            .subscribeOn(schedulerProvider.io())
+            .map { data -> data }
+            .subscribe(object : Observer<ArrayList<Media>> {
+                override fun onSubscribe(d: Disposable) {
+                    disposables.add(d)
+                }
+
+                override fun onNext(data: ArrayList<Media>) {
+                    photosMutableLiveData.postValue(data)
+                    Log.e("hailpt"," getContent onNext ")
+                }
+
+                override fun onError(e: Throwable) {
+                    Log.e("hailpt"," getContent onError ")
+                }
+
+                override fun onComplete() {
+                    Log.e("hailpt"," getContent onComplete ")
+                }
+            })
+        return photosMutableLiveData
+    }
+
+
+    fun getMediasByLocation(topicId:String, filter:String): MutableLiveData<ArrayList<Media>> {
+        api.getMediasByLocation(Config.TOKEN,topicId,filter)
+            .observeOn(schedulerProvider.ui())
+            .subscribeOn(schedulerProvider.io())
+            .map { data -> data }
+            .subscribe(object : Observer<ArrayList<Media>> {
+                override fun onSubscribe(d: Disposable) {
+                    disposables.add(d)
+                }
+
+                override fun onNext(data: ArrayList<Media>) {
+                    mediaMutableLiveData.postValue(data)
+                    Log.e("hailpt"," getContent onNext ")
+                }
+
+                override fun onError(e: Throwable) {
+                    Log.e("hailpt"," getContent onError ")
+                }
+
+                override fun onComplete() {
+                    Log.e("hailpt"," getContent onComplete ")
+                }
+            })
+        return mediaMutableLiveData
+    }
+
     override fun onClear() {
 
     }

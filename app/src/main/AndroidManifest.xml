@@ -23,7 +23,12 @@
         <activity android:name=".view.ui.actitivy.login.ChooseLocationActivity">
         </activity>
         <activity
-                android:name=".view.ui.actitivy.trend.TrendingActivity"
+                android:name=".view.ui.actitivy.trend.CategoryTrendingActivity"
+                android:theme="@style/MyMaterialTheme">
+        </activity>
+
+        <activity
+                android:name=".view.ui.actitivy.trend.LocationTrendingActivity"
                 android:theme="@style/MyMaterialTheme">
         </activity>
         <activity

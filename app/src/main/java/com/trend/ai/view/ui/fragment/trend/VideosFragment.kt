@@ -56,37 +56,53 @@ class VideosFragment : BaseFragment<TrendViewModel>(), AdEvent.AdEventListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         swipeContainer.setOnRefreshListener {
-            val photoReq = MediaReq()
-            photoReq.cateId = Utils.testCateId
-            photoReq.filter = "videos"
-            viewModel!!.setMediaParam(photoReq)
+            if (Utils.topicId == "") {
+                val photoReq = MediaReq()
+                photoReq.cateId = Utils.cateId
+                photoReq.filter = "videos"
+                viewModel!!.setMediaParam(photoReq)
+            } else {
+                val photoReq = MediaReq()
+                photoReq.cateId = Utils.topicId
+                photoReq.filter = "videos"
+                viewModel!!.setMediaParamByLocation(photoReq)
+            }
         }
         Utils.setupColorForF5(swipeContainer)
     }
 
     fun init() {
+        if (Utils.topicId == "") {
+            viewModel!!.medias.observe(this, Observer {
+                mShimmerViewContainer.stopShimmerAnimation()
+                mShimmerViewContainer.visibility = View.GONE
+                swipeContainer.isRefreshing = false
+                native_recycler_view.layoutManager = LinearLayoutManager(requireContext())
+                val adapter =
+                    ImaDemoAdapter(ImaAdsLoader.Builder(requireContext()).setAdEventListener(this), it!!, context!!)
+                native_recycler_view.adapter = adapter
 
-        viewModel!!.medias.observe(this, Observer {
-            mShimmerViewContainer.stopShimmerAnimation()
-            mShimmerViewContainer.visibility = View.GONE
-//            val mAdapter = MediaAdapter(it!!,context!!)
-//            rcView.layoutManager = LinearLayoutManager(activity)
-//            rcView.setHasFixedSize(false)
-//            rcView.adapter = mAdapter
-//            mAdapter.onItemClick = { cate ->
-//
-//            }
-            swipeContainer.isRefreshing = false
+            })
+            val photoReq = MediaReq()
+            photoReq.cateId = Utils.cateId
+            photoReq.filter = "videos"
+            viewModel!!.setMediaParam(photoReq)
+        } else {
+            viewModel!!.mediasByLocation.observe(this, Observer {
+                mShimmerViewContainer.stopShimmerAnimation()
+                mShimmerViewContainer.visibility = View.GONE
+                swipeContainer.isRefreshing = false
+                native_recycler_view.layoutManager = LinearLayoutManager(requireContext())
+                val adapter =
+                    ImaDemoAdapter(ImaAdsLoader.Builder(requireContext()).setAdEventListener(this), it!!, context!!)
+                native_recycler_view.adapter = adapter
 
-            native_recycler_view.layoutManager = LinearLayoutManager(requireContext())
-            val adapter = ImaDemoAdapter(ImaAdsLoader.Builder(requireContext()).setAdEventListener(this),it!!,context!!)
-            native_recycler_view.adapter = adapter
-
-        })
-        val photoReq = MediaReq()
-        photoReq.cateId = Utils.testCateId
-        photoReq.filter = "videos"
-        viewModel!!.setMediaParam(photoReq)
+            })
+            val photoReq = MediaReq()
+            photoReq.cateId = Utils.topicId
+            photoReq.filter = "videos"
+            viewModel!!.setMediaParamByLocation(photoReq)
+        }
 
 
     }

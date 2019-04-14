@@ -15,7 +15,7 @@ import android.widget.Toast
 import com.trend.ai.core.base.BaseActivity
 import com.trend.ai.databinding.ActivityMenuLeftBinding
 import com.trend.ai.view.adapter.TabPagerAdapter
-import com.trend.ai.view.ui.actitivy.trend.TrendingActivity
+import com.trend.ai.view.ui.actitivy.trend.CategoryTrendingActivity
 import kotlinx.android.synthetic.main.activity_menu_left.*
 import kotlinx.android.synthetic.main.app_bar_menu_left.*
 
@@ -74,7 +74,7 @@ class MenuLeftActivity : BaseActivity<MenuViewModel, ActivityMenuLeftBinding>(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             com.trend.ai.R.id.action_settings -> {
-                TrendingActivity.start(application,"5c9b2f33ceddb700010694f5")
+                CategoryTrendingActivity.start(application,"5c9b2f33ceddb700010694f5")
                 return true
             }
 

@@ -50,7 +50,7 @@ class LocationFragment : BaseFragment<TrendViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         swipeContainer.setOnRefreshListener {
-            viewModel!!.setContentParam(Utils.testCateId)
+            viewModel!!.setContentParam(Utils.cateId)
         }
         Utils.setupColorForF5(swipeContainer)
     }
@@ -70,7 +70,7 @@ class LocationFragment : BaseFragment<TrendViewModel>() {
             swipeContainer.isRefreshing = false
 
         })
-        viewModel!!.setContentParam(Utils.testCateId)
+        viewModel!!.setContentParam(Utils.cateId)
 
 
     }

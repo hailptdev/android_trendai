@@ -8,12 +8,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.trend.ai.R
 import com.trend.ai.core.base.BaseFragment
+import com.trend.ai.util.Utils
 import com.trend.ai.view.adapter.AchievementAdapter
-import com.trend.ai.view.ui.actitivy.trend.TrendingActivity
-import kotlinx.android.synthetic.main.fragment_location_trend.*
+import com.trend.ai.view.ui.actitivy.trend.CategoryTrendingActivity
+import kotlinx.android.synthetic.main.fragment_category_trend.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,6 +33,8 @@ class CateTrendFragment : BaseFragment<MenuViewModel>() {
 
     override fun onCreate(instance: Bundle?, viewModel: MenuViewModel?) {
         this.viewModel = viewModel
+
+
     }
 
     override fun onCreateView(
@@ -40,29 +42,47 @@ class CateTrendFragment : BaseFragment<MenuViewModel>() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_location_trend, container, false)
+        return inflater.inflate(R.layout.fragment_category_trend, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        swipeContainer.setOnRefreshListener {
+            viewModel!!.setGetInfomationParam(true)
+        }
+        Utils.setupColorForF5(swipeContainer)
+
         viewModel!!.userInfomation.observe(this, Observer {
-            //            mShimmerViewContainer.stopShimmerAnimation()
-//            mShimmerViewContainer.visibility = View.GONE
+            swipeContainer.isRefreshing = false
+            mShimmerViewContainer.stopShimmerAnimation()
+            mShimmerViewContainer.visibility = View.GONE
             val mAdapter = AchievementAdapter(it!!.interestCategories)
             rcView.layoutManager = LinearLayoutManager(context)
             rcView.setHasFixedSize(false)
             rcView.adapter = mAdapter
             mAdapter.onItemClick = { cate ->
 //                viewModel.setContentParam(cate.id!!)
-
-
-                TrendingActivity.start(activity!!, cate.id)
+                Utils.topicId = ""
+                Utils.cateId = cate.id
+                CategoryTrendingActivity.start(activity!!, cate.id)
 
 
             }
         })
         viewModel!!.setGetInfomationParam(true)
+
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        mShimmerViewContainer.startShimmerAnimation()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mShimmerViewContainer.stopShimmerAnimation()
 
     }
 

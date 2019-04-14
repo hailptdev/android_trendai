@@ -25,6 +25,21 @@ constructor(private val repository: TrendRepository) : ViewModel() {
     private val photoParam = MutableLiveData<MediaReq>()
     val photos: LiveData<ArrayList<Media>>
 
+
+    private val contentByLocation = MutableLiveData<String>()
+    val contentsByLocation: LiveData<ArrayList<Content>>
+
+
+    private val peopleLocationParams = MutableLiveData<String>()
+    val peopleByLocation: LiveData<ArrayList<Influencer>>
+
+    private val photoLocatopmParam = MutableLiveData<MediaReq>()
+    val photosByLocation: LiveData<ArrayList<Media>>
+
+    private val mediaParamByLocation = MutableLiveData<MediaReq>()
+    val mediasByLocation: LiveData<ArrayList<Media>>
+
+
     init {
         contents = Transformations.switchMap(contentParam) {
             repository.getContent(contentParam.value!!) }
@@ -37,6 +52,19 @@ constructor(private val repository: TrendRepository) : ViewModel() {
 
         photos = Transformations.switchMap(photoParam) {
             repository.getPhotos(photoParam.value!!.cateId!!,photoParam.value!!.filter!!) }
+
+        contentsByLocation = Transformations.switchMap(contentByLocation) {
+            repository.getContentByLocation(contentByLocation.value!!) }
+
+        peopleByLocation = Transformations.switchMap(peopleLocationParams) {
+            repository.getPeopleByLocation(peopleLocationParams.value!!) }
+
+        photosByLocation = Transformations.switchMap(photoLocatopmParam) {
+            repository.getPhotosByLocation(photoLocatopmParam.value!!.cateId!!,photoLocatopmParam.value!!.filter!!) }
+
+        mediasByLocation = Transformations.switchMap(mediaParamByLocation) {
+            repository.getMediasByLocation(mediaParamByLocation.value!!.cateId!!,mediaParamByLocation.value!!.filter!!) }
+
     }
 
     fun setContentParam(contentParam:String) {
@@ -54,6 +82,28 @@ constructor(private val repository: TrendRepository) : ViewModel() {
     fun setPhotosParam(photoParam:MediaReq) {
         this.photoParam.value = photoParam
     }
+
+/*    ============================================*/
+
+    fun setContentsByLocationParam(contentByLocation:String) {
+        this.contentByLocation.value = contentByLocation
+    }
+
+    fun setPeopleByLocationParam(peopleLocationParams:String) {
+        this.peopleLocationParams.value = peopleLocationParams
+    }
+
+    fun setPhotosParamByLocation(photoLocatopmParam:MediaReq) {
+        this.photoLocatopmParam.value = photoLocatopmParam
+    }
+
+    fun setMediaParamByLocation(mediaParamByLocation:MediaReq) {
+        this.mediaParamByLocation.value = mediaParamByLocation
+    }
+
+
+
+
 
     override fun onCleared() {
         super.onCleared()

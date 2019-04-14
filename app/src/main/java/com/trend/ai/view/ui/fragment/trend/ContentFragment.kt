@@ -27,6 +27,7 @@ class ContentFragment : BaseFragment<TrendViewModel>() {
 
     var cateId = ""
     var viewModel: TrendViewModel? = null
+    var isTrendingFromLocation = false
     override fun getViewModel(): Class<TrendViewModel> {
         return TrendViewModel::class.java
     }
@@ -47,28 +48,55 @@ class ContentFragment : BaseFragment<TrendViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         swipeContainer.setOnRefreshListener {
-            viewModel!!.setContentParam(Utils.testCateId)
+            if(Utils.topicId == ""){
+                viewModel!!.setContentParam(Utils.cateId)
+            } else{
+                viewModel!!.setContentsByLocationParam(Utils.topicId)
+            }
+
         }
         Utils.setupColorForF5(swipeContainer)
     }
 
     fun init() {
+        if (Utils.topicId == ""){
+            viewModel!!.contents.observe(this, Observer {
+                mShimmerViewContainer.stopShimmerAnimation()
+                mShimmerViewContainer.visibility = View.GONE
+                val mAdapter = ContentAdapter(it!!,context!!)
+                rcView.layoutManager = LinearLayoutManager(activity)
+                rcView.setHasFixedSize(false)
+                rcView.adapter = mAdapter
+                mAdapter.onItemClick = { cate ->
 
-        viewModel!!.contents.observe(this, Observer {
-            mShimmerViewContainer.stopShimmerAnimation()
-            mShimmerViewContainer.visibility = View.GONE
-            val mAdapter = ContentAdapter(it!!,context!!)
-            rcView.layoutManager = LinearLayoutManager(activity)
-            rcView.setHasFixedSize(false)
-            rcView.adapter = mAdapter
-            mAdapter.onItemClick = { cate ->
+                }
+                swipeContainer.isRefreshing = false
 
-            }
-            swipeContainer.isRefreshing = false
+            })
+            viewModel!!.setContentParam(Utils.cateId)
+        } else {
+            viewModel!!.contentsByLocation.observe(this, Observer {
+                mShimmerViewContainer.stopShimmerAnimation()
+                mShimmerViewContainer.visibility = View.GONE
+                val mAdapter = ContentAdapter(it!!,context!!)
+                rcView.layoutManager = LinearLayoutManager(activity)
+                rcView.setHasFixedSize(false)
+                rcView.adapter = mAdapter
+                mAdapter.onItemClick = { cate ->
 
-        })
-        viewModel!!.setContentParam(Utils.testCateId)
+                }
+                swipeContainer.isRefreshing = false
+
+            })
+            viewModel!!.setContentsByLocationParam(Utils.topicId)
+
+
+
+        }
+
 
 
     }

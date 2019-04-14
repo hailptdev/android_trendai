@@ -23,7 +23,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvName"
-            app:layout_constraintTop_toTopOf="@+id/imvAva" app:layout_constraintStart_toEndOf="@+id/imvAva"
+            app:layout_constraintTop_toTopOf="@+id/imvAva"
+            app:layout_constraintStart_toEndOf="@+id/imvAva"
             android:layout_marginStart="10dp"/>
     <TextView
             android:textColor="#6b7d8b"

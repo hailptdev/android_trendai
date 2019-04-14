@@ -11,5 +11,5 @@ object Utils {
             android.R.color.holo_blue_light);
     }
 
-    val testCateId = "5c9b2f32ceddb700010694e3"
-}
+    var cateId = "5c9b2f32ceddb700010694e3"
+    var topicId = "5c9b2f32ceddb700010694e3"}

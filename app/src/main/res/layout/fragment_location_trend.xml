@@ -3,13 +3,54 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+              xmlns:shimmer="http://schemas.android.com/apk/res-auto"
              tools:context=".view.ui.actitivy.menu.LocationTrendFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcView"
+    <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/mShimmerViewContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            shimmer:duration="800">
+
+        <!-- Adding 3 rows of placeholders -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <include layout="@layout/trends_location_placeholder_item"/>
+
+            <include layout="@layout/trends_location_placeholder_item"/>
+
+            <include layout="@layout/trends_location_placeholder_item"/>
+            <include layout="@layout/trends_location_placeholder_item"/>
+            <include layout="@layout/trends_location_placeholder_item"/>
+            <include layout="@layout/trends_location_placeholder_item"/>
+            <include layout="@layout/trends_location_placeholder_item"/>
+            <include layout="@layout/trends_location_placeholder_item"/>
+            <include layout="@layout/trends_location_placeholder_item"/>
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swipeContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+
+                android:id="@+id/rcView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>
