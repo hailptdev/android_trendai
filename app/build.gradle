@@ -114,4 +114,7 @@ dependencies {
 
     implementation "im.ene.toro3:toro:${latest_release}"
     implementation "im.ene.toro3:toro-ext-exoplayer:${latest_release}"
+
+
+    implementation 'com.allattentionhere:autoplayvideos:0.2.0'
 }

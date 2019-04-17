@@ -18,6 +18,7 @@ package toro.demo.ads.ima
 
 import android.content.Context
 import android.net.Uri
+import android.support.v7.widget.AppCompatImageView
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -53,6 +54,9 @@ class ImaVideoViewHolder(itemView: View, builder: ImaAdsLoader.Builder) : BaseVi
     var tvReload: TextView = itemView.findViewById(R.id.tvReload)
     var tvHeart: TextView = itemView.findViewById(R.id.tvHeart)
 
+    var posterView: AppCompatImageView = itemView.findViewById(R.id.posterView)
+
+
 
     var mediaUri = Uri.parse(itemView.context.getString(R.string.ima_content_url))!!
     var adTagUri = Uri.parse(itemView.context.getString(R.string.ima_ad_tag_url))!!
@@ -72,14 +76,19 @@ class ImaVideoViewHolder(itemView: View, builder: ImaAdsLoader.Builder) : BaseVi
     }
 
     override fun play() {
+        Log.e("ImaVideoViewHolder "," play")
         helper?.play()
     }
 
     override fun pause() {
+        Log.e("ImaVideoViewHolder "," pause")
+//        posterView.visibility = View.VISIBLE
         helper?.pause()
     }
 
     override fun isPlaying(): Boolean {
+//        posterView.visibility = View.GONE
+        Log.e("ImaVideoViewHolder "," isPlaying")
         return helper?.isPlaying ?: false
     }
 
@@ -108,6 +117,11 @@ class ImaVideoViewHolder(itemView: View, builder: ImaAdsLoader.Builder) : BaseVi
         tvNameScreen.text = "@" + data.user!!.screenName
         tvContent.text = data.text
         Glide.with(context).load(data.user!!.profileImageUrl).into(imvAva)
+
+
+//        Glide.with(context).load(data.entities!!.media!![0].mediaUrl!!).into(posterView)
+
+
 
         tvComment.text = data.replyCount.toString()
         tvReload.text = data.retweetCount.toString()

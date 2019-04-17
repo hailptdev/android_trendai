@@ -3,6 +3,7 @@ package com.trend.ai.view.ui.fragment.trend
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.os.Environment
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -10,12 +11,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.ads.interactivemedia.v3.api.AdEvent
 import com.google.android.exoplayer2.ext.ima.ImaAdsLoader
+import com.squareup.picasso.Picasso
 import com.trend.ai.R
 import com.trend.ai.core.base.BaseFragment
 import com.trend.ai.model.api.request.MediaReq
 import com.trend.ai.util.Utils
+import com.trend.ai.view.adapter.MyVideosAdapter
 import kotlinx.android.synthetic.main.fragment_media.*
+import kotlinx.android.synthetic.main.fragment_recycler_view.*
 import toro.demo.ads.ima.ImaDemoAdapter
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -92,10 +97,24 @@ class VideosFragment : BaseFragment<TrendViewModel>(), AdEvent.AdEventListener {
                 mShimmerViewContainer.stopShimmerAnimation()
                 mShimmerViewContainer.visibility = View.GONE
                 swipeContainer.isRefreshing = false
-                native_recycler_view.layoutManager = LinearLayoutManager(requireContext())
-                val adapter =
-                    ImaDemoAdapter(ImaAdsLoader.Builder(requireContext()).setAdEventListener(this), it!!, context!!)
-                native_recycler_view.adapter = adapter
+                rv_home.layoutManager = LinearLayoutManager(requireContext())
+
+                rv_home.setActivity(activity)
+                rv_home.setPlayOnlyFirstVideo(true) // false by default
+                rv_home.setCheckForMp4(false) //true by default
+                rv_home.setDownloadPath(Environment.getExternalStorageDirectory().toString() + "/MyVideo") // (Environment.getExternalStorageDirectory() + "/Video") by default
+                rv_home.setDownloadVideos(true) // false by default
+                rv_home.setVisiblePercent(50f) // percentage of View that needs to be visible to start playing
+                val p = Picasso.with(context)
+                val adapter2 = MyVideosAdapter(it,p)
+                val urls = ArrayList<String>()
+                for (`object` in it!!) {
+                        urls.add(`object`.entities!!.media!![0].videoInfo!!.variants!![1].url!!)
+                }
+                rv_home.preDownload(urls)
+                rv_home.adapter = adapter2
+                rv_home.smoothScrollBy(0, 1)
+                rv_home.smoothScrollBy(0, -1)
 
             })
             val photoReq = MediaReq()
