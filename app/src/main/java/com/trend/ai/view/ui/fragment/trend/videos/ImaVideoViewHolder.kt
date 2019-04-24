@@ -107,8 +107,10 @@ class ImaVideoViewHolder(itemView: View, builder: ImaAdsLoader.Builder) : BaseVi
     override fun onBindData(data: Media, context: Context) {
         super.onBindData(data, context)
         if (data.entities != null && data.entities!!.media!!.isNotEmpty() && data.entities!!.media!![0].videoInfo != null && data.entities!!.media!![0].videoInfo!!.variants!!.isNotEmpty()) {
-            val url = data.entities!!.media!![0].videoInfo!!.variants!![1].url!!
+            val url = data.entities!!.media!![0].videoInfo!!.variants!![0].url!!
             mediaUri = Uri.parse(url)
+
+            Log.e("hailpt"," ~~~> mediaUri "+mediaUri)
         }
 
         adTagUri = Uri.parse("http://pbs.twimg.com/ext_tw_video_thumb/1114691100826931201/pu/img/fTkE-iLb4InvrH-l.jpg")
