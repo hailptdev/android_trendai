@@ -110,7 +110,7 @@ class ImaVideoViewHolder(itemView: View, builder: ImaAdsLoader.Builder) : BaseVi
             val url = data.entities!!.media!![0].videoInfo!!.variants!![0].url!!
             mediaUri = Uri.parse(url)
 
-            Log.e("hailpt"," ~~~> mediaUri "+mediaUri)
+            Log.e("mediaUrihailpt"," ~~~> mediaUri "+mediaUri)
         }
 
         adTagUri = Uri.parse("http://pbs.twimg.com/ext_tw_video_thumb/1114691100826931201/pu/img/fTkE-iLb4InvrH-l.jpg")

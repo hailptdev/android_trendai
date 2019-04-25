@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.google.android.exoplayer2.ui.PlayerView
 import com.trend.ai.R
 import com.trend.ai.model.api.response.Content
 
@@ -66,7 +67,7 @@ class ContentAdapter(private val topicDetails: List<Content>, private val contex
         var tvComment: TextView = view.findViewById(R.id.tvComment)
         var tvReload: TextView = view.findViewById(R.id.tvReload)
         var tvHeart: TextView = view.findViewById(R.id.tvHeart)
-
+        val exoPlayerView: PlayerView = itemView.findViewById(R.id.imageView3)
         init {
             itemView.setOnClickListener {
                 onItemClick?.invoke(topicDetails[adapterPosition])
@@ -86,11 +87,11 @@ class ContentAdapter(private val topicDetails: List<Content>, private val contex
                 TextViewHolder(view)
             }
             TYPE_VIDEO -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_content_photo_layout, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_content_video_layout, parent, false)
                 VideoViewHolder(view)
             }
             TYPE_PICTURE -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_content_video_layout, parent, false)
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_content_photo_layout, parent, false)
                 PhotoViewHolder(view)
             }
             else -> throw IllegalArgumentException("Invalid view type")
@@ -140,7 +141,7 @@ class ContentAdapter(private val topicDetails: List<Content>, private val contex
                 holder.tvReload.text = data.retweetCount.toString()
                 holder.tvHeart.text = data.favoriteCount.toString()
 
-                Glide.with(context).load("https://i-vnexpress.vnecdn.net/2019/04/24/hien-truong-5252-1556097063.jpg").into(holder.imvPhotos)
+                Glide.with(context).load(data.entities!!.media!![0].mediaUrl).into(holder.imvPhotos)
             }
 
             TYPE_VIDEO -> {
@@ -163,7 +164,7 @@ class ContentAdapter(private val topicDetails: List<Content>, private val contex
     }
 
     override fun getItemViewType(position: Int): Int {
-//        return TYPE_VIDEO
+//
         when {
             topicDetails[position].entities!!.media!!.isEmpty() -> return TYPE_TEXT
             topicDetails[position].entities!!.media!![0].type == "photo" -> return TYPE_PICTURE
